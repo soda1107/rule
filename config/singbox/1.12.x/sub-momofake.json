@@ -1,9 +1,9 @@
 {
   "dns": {
     "servers": [
-      {"tag": "local", "type": "udp", "server": "127.0.0.1","detour": "direct"},
-      {"tag": "public", "type": "udp", "server": "127.0.0.1", "server_port": 6553, "detour": "direct"},
-      {"tag": "bootstrap", "server": "211.137.96.205", "detour": "direct"}
+      {"tag": "local", "type": "udp", "address": "127.0.0.1","detour": "direct"},
+      {"tag": "public", "type": "udp", "address": "127.0.0.1", "server_port": 6553, "detour": "direct"},
+      {"tag": "bootstrap", "address": "211.137.96.205", "detour": "direct"}
     ],
     "rules": [
       {
