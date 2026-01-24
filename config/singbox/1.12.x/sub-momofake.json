@@ -1,19 +1,20 @@
 {
   "dns": {
     "servers": [
-      {"tag": "local", "type": "udp", "address": "127.0.0.1","detour": "direct"},
-      {"tag": "public", "type": "udp", "address": "127.0.0.1", "server_port": 6553, "detour": "direct"},
-      {"tag": "bootstrap", "address": "211.137.96.205", "detour": "direct"}
+      {"tag": "local", "type": "udp", "server": "127.0.0.1","server_port": 53, detour": "direct"},
+      {"tag": "public", "type": "udp", "server": "127.0.0.1", "server_port": 6553, "detour": "direct"},
+      {"tag": "dns-bootstrap", "server": "211.137.96.205", "detour": "direct"},
+      {"tag": "block","address": "rcode://success"}
     ],
     "rules": [
       {
         "domain": [
           "gh-proxy.com"
         ],
-        "server": "bootstrap"
+        "server": "dns-bootstrap"
       },
       {"clash_mode": "direct", "server": "local"},
-      {"query_type": "HTTPS", "action": "reject"},
+      {"query_type": "HTTPS", "action": "block"},
       {"rule_set": "geosite-cn", "server": "local"}
     ],
     "final": "public",
