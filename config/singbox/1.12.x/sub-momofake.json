@@ -3,22 +3,17 @@
     "servers": [
       {"tag": "local", "type": "udp", "server": "127.0.0.01"},
       {"tag": "public", "type": "https", "server": "127.0.0.1", "domain_resolver": "local"},
-      {"tag": "foreign", "type": "https", "server": "127.0.0.1","server_port": 6553, "detour": "🚀 默认代理"},
-      {"tag": "fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/15", "inet6_range": "fc00::/18"}
+      {"tag": "foreign", "type": "https", "server": "127.0.0.1","server_port": 6553, "detour": "🚀 默认代理"}
     ],
     "rules": [
       {"clash_mode": "direct", "server": "local"},
-      {"clash_mode": "global", "server": "fakeip"},
       {"query_type": "HTTPS", "action": "reject"},
-      {"rule_set": "geosite-fakeipfilter", "server": "local"},
-      {"query_type": ["A", "AAAA"], "server": "fakeip", "rewrite_ttl": 1},
       {"rule_set": "geosite-cn", "server": "local"}
     ],
     "final": "foreign",
     "client_subnet": "223.5.5.0/24",
     "strategy": "prefer_ipv4",
     "independent_cache": true,
-    "reverse_mapping": true
   },
   "outbounds": [
     {"tag": "🚀 默认代理", "type": "selector", "outbounds": ["🇭🇰 香港手动", "🇯🇵 日本手动", "🇸🇬 狮城手动", "🇺🇲 美国手动", "🐸 手动选择", "♻️ 自动选择"]},
@@ -67,7 +62,6 @@
       {"rule_set": "geosite-steam", "outbound": "🎮 Steam"},
       {"rule_set": "geosite-!cn", "outbound": "🚀 默认代理"},
       {"rule_set": "geosite-cn", "outbound": "🎯 全球直连"},
-      {"action": "resolve"},
       {"rule_set": "geoip-google", "outbound": "🍀 Google"},
       {"rule_set": "geoip-apple", "outbound": "🍏 Apple"},
       {"rule_set": "geoip-telegram", "outbound": "📲 Telegram"},
