@@ -1,7 +1,7 @@
 {
   "dns": {
     "servers": [
-      {"tag": "local", "type": "udp", "server": "127.0.0.1","server_port": 53, detour": "direct"},
+      {"tag": "local", "type": "udp", "server": "127.0.0.1","server_port": 53, "detour": "direct"},
       {"tag": "public", "type": "udp", "server": "127.0.0.1", "server_port": 6553, "detour": "direct"},
       {"tag": "dns-bootstrap", "server": "211.137.96.205", "detour": "direct"},
       {"tag": "block","address": "rcode://success"}
