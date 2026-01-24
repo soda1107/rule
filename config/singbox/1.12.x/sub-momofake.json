@@ -1,7 +1,7 @@
 {
   "dns": {
     "servers": [
-      {"tag": "local", "type": "udp", "server": "127.0.0.01"},
+      {"tag": "local", "type": "udp", "server": "127.0.0.1"},
       {"tag": "public", "type": "https", "server": "127.0.0.1", "domain_resolver": "local"},
       {"tag": "foreign", "type": "https", "server": "127.0.0.1","server_port": 6553, "detour": "🚀 默认代理"}
     ],
