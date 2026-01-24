@@ -12,7 +12,6 @@
         ],
         "server": "dns-bootstrap"
       },
-      { "rule_set": "geosite-category-ads-all", "action": "predefined", "rcode": "REFUSED" },
       { "server": "local"},
       {"query_type": "HTTPS", "action": "reject"},
       {"rule_set": "geosite-cn", "server": "local"}
