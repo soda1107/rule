@@ -3,8 +3,8 @@
     "servers": [
       {"tag": "local", "type": "udp", "server": "127.0.0.1","server_port": 53, "detour": "direct"},
       {"tag": "public", "type": "udp", "server": "127.0.0.1", "server_port": 6553, "detour": "direct"},
-      {"tag": "dns-bootstrap", "server": "211.137.96.205", "detour": "direct"},
-      {"tag": "block","address": "rcode://success"}
+      {"tag": "dns-bootstrap", "type": "udp", "server": "211.137.96.205", "server_port": 53, "detour": "direct"},
+      {"tag": "block","server": "rcode://success"}
     ],
     "rules": [
       {
@@ -98,7 +98,7 @@
       {"tag": "geoip-cn", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/qljsyph/ruleset-icon/raw/refs/heads/main/sing-box/geoip/China-ASN-combined-ip.srs", "download_detour": "🎯 全球直连"}
     ],
     "final": "🐠 漏网之鱼",
-    "default_domain_resolver": {"server": "public"}
+    "default_domain_resolver": {"server": "local"}
   },
   "inbounds": [
     {
