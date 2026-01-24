@@ -3,8 +3,7 @@
     "servers": [
       {"tag": "local", "type": "udp", "server": "127.0.0.1:53", "detour": "direct"},
       {"tag": "public",  "type": "udp", "server": "127.0.0.1:6553",  "detour": "direct"},
-      {"tag": "dns-bootstrap", "type": "udp", "server": "211.137.96.205:53",  "detour": "direct"},
-      {"tag": "block",  "server": "rcode://success"}
+      {"tag": "dns-bootstrap", "type": "udp", "server": "211.137.96.205:53",  "detour": "direct"}
     ],
     "rules": [
       {
@@ -13,9 +12,11 @@
         ],
         "server": "dns-bootstrap"
       },
+      { "rule_set": "geosite-category-ads-all", "action": "predefined", "rcode": "REFUSED" },
       { "server": "local"},
       {"query_type": "HTTPS", "action": "block"},
       {"rule_set": "geosite-cn", "server": "local"}
+      
     ],
     "final": "public",
     "strategy": "prefer_ipv4",
