@@ -1,19 +1,24 @@
 {
   "dns": {
     "servers": [
-      {"tag": "local", "type": "udp", "server": "127.0.0.1"},
-      {"tag": "public", "type": "https", "server": "127.0.0.1", "domain_resolver": "local"},
-      {"tag": "foreign", "type": "https", "server": "127.0.0.1","server_port": 6553, "detour": "🚀 默认代理"}
+      {"tag": "local", "type": "udp", "server": "127.0.0.1","detour": "direct"},
+      {"tag": "public", "type": "udp", "server": "127.0.0.1", "server_port": 6553, "detour": "direct"},
+      {"tag": "bootstrap", "server": "211.137.96.205", "detour": "direct"}
     ],
     "rules": [
+      {
+        "domain": [
+          "gh-proxy.com"
+        ],
+        "server": "bootstrap"
+      },
       {"clash_mode": "direct", "server": "local"},
       {"query_type": "HTTPS", "action": "reject"},
       {"rule_set": "geosite-cn", "server": "local"}
     ],
-    "final": "foreign",
-    "client_subnet": "223.5.5.0/24",
+    "final": "public",
     "strategy": "prefer_ipv4",
-    "independent_cache": true,
+    "independent_cache": true
   },
   "outbounds": [
     {"tag": "🚀 默认代理", "type": "selector", "outbounds": ["🇭🇰 香港手动", "🇯🇵 日本手动", "🇸🇬 狮城手动", "🇺🇲 美国手动", "🐸 手动选择", "♻️ 自动选择"]},
