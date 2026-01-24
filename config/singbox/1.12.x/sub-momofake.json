@@ -1,10 +1,10 @@
 {
   "dns": {
     "servers": [
-      {"tag": "local",  "address": "udp://127.0.0.1:53", "detour": "direct"},
-      {"tag": "public",  "address": "udp://127.0.0.1:6553",  "detour": "direct"},
-      {"tag": "dns-bootstrap", "address": "udp://211.137.96.205:53",  "detour": "direct"},
-      {"tag": "block","address": "rcode://success"}
+      {"tag": "local",  "server": "udp://127.0.0.1:53", "detour": "direct"},
+      {"tag": "public",  "server": "udp://127.0.0.1:6553",  "detour": "direct"},
+      {"tag": "dns-bootstrap", "server": "udp://211.137.96.205:53",  "detour": "direct"},
+      {"tag": "block", "server": "rcode://success"}
     ],
     "rules": [
       {
