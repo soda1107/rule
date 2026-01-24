@@ -13,7 +13,7 @@
         ],
         "server": "dns-bootstrap"
       },
-      {"clash_mode": "direct", "server": "local"},
+      { "server": "local"},
       {"query_type": "HTTPS", "action": "block"},
       {"rule_set": "geosite-cn", "server": "local"}
     ],
