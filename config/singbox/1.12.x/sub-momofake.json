@@ -1,10 +1,10 @@
 {
   "dns": {
     "servers": [
-      {"tag": "local", "type": "udp", "server": "127.0.0.1","server_port": 53, "detour": "direct"},
-      {"tag": "public", "type": "udp", "server": "127.0.0.1", "server_port": 6553, "detour": "direct"},
-      {"tag": "dns-bootstrap", "type": "udp", "server": "211.137.96.205", "server_port": 53, "detour": "direct"},
-      {"tag": "block","server": "rcode://success"}
+      {"tag": "local", "type": "udp", "address": "127.0.0.1","port": 53, "detour": "direct"},
+      {"tag": "public", "type": "udp", "address": "127.0.0.1", "port": 6553, "detour": "direct"},
+      {"tag": "dns-bootstrap", "type": "udp", "address": "211.137.96.205", "port": 53, "detour": "direct"},
+      {"tag": "block","address": "rcode://success"}
     ],
     "rules": [
       {
