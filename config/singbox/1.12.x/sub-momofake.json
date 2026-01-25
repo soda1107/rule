@@ -1,6 +1,6 @@
 {
   "dns": {
-    "client_subnet": "192.168.1.1",
+    "client_subnet": "192.168.31.1",
     "servers": [
       { "tag": "local", "type": "udp", "server": "127.0.0.1" },
       { "tag": "public", "type": "udp", "server": "127.0.0.1", "server_port": 6553 },
