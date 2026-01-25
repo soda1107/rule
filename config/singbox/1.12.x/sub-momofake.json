@@ -6,7 +6,6 @@
       {"tag": "dns-bootstrap", "type": "udp", "server": "211.137.96.205"}
     ],
     "rules": [
-      { "query_type": ["HTTPS", "QUIC"], "action": "reject" },
       {"domain": ["gh-proxy.com"],"server": "dns-bootstrap"},
       {"rule_set": "geosite-cn","action": "route", "server": "local"},
       { "rule_set": "geosite-!cn", "action": "route","server": "public" }
