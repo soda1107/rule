@@ -10,8 +10,8 @@
       { "domain": ["github.com", "githubusercontent.com", "github.io"], "action": "route", "server": "public" },
       { "domain": ["gh-proxy.com"], "action": "route", "server": "dns-bootstrap" },
       { "rule_set": "geosite-github", "action": "route", "server": "public" },
-      { "rule_set": "geosite-cn", "action": "route", "server": "local" },
-      { "rule_set": "geosite-!cn", "action": "route", "server": "public" }
+      { "rule_set": "geosite-!cn", "action": "route", "server": "public" },
+      { "rule_set": "geosite-cn", "action": "route", "server": "local" }
     ],
     "final": "local",
     "strategy": "prefer_ipv4",
@@ -97,7 +97,7 @@
       { "tag": "geoip-cn", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/binary/geoip-cn.srs", "download_detour": "🎯 全球直连" }
     ],
     "final": "🐠 漏网之鱼",
-    "default_domain_resolver": { "server": "local" }
+    "default_domain_resolver": { "server": "dns-bootstrap" }
   },
   "inbounds": [
     { "tag": "dns-in", "type": "direct", "listen": "::", "listen_port": 1053 },
