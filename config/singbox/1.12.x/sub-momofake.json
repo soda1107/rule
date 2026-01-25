@@ -6,11 +6,12 @@
       {"tag": "dns-bootstrap", "type": "udp", "server": "211.137.96.205"}
     ],
     "rules": [
+      { "query_type": ["HTTPS", "QUIC"], "action": "reject" },
       {"domain": ["gh-proxy.com"],"server": "dns-bootstrap"},
-      { "server": "local"},
-      {"rule_set": "geosite-cn", "server": "local"}
+      {"rule_set": "geosite-cn","action": "route", "server": "local"},
+      { "rule_set": "geosite-!cn", "action": "route","server": "public" }
     ],
-    "final": "public",
+    "final": "local",
     "strategy": "prefer_ipv4",
     "independent_cache": true
   },
@@ -43,6 +44,7 @@
     "rules": [
       {"action": "sniff", "sniffer": ["http", "tls", "quic", "dns"]},
       {"inbound": "dns-in", "action": "hijack-dns"},
+      {"domain": ["dns.google","cloudflare-dns.com"],"port": [443, 853],"action": "route","outbound": "♻️ 自动选择"},
       {"ip_is_private": true, "outbound": "🎯 全球直连"},
       {"clash_mode": "direct", "outbound": "🎯 全球直连"},
       {"clash_mode": "global", "outbound": "GLOBAL"},
@@ -153,7 +155,7 @@
   },
   "log": {
     "disabled": false,
-    "level": "info",
+    "level": "warn",
     "timestamp": true
   }
 }
