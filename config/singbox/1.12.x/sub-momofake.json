@@ -1,5 +1,6 @@
 {
   "dns": {
+    "client_subnet": "192.168.1.1",
     "servers": [
       { "tag": "local", "type": "udp", "server": "127.0.0.1" },
       { "tag": "public", "type": "udp", "server": "127.0.0.1", "server_port": 6553 },
@@ -7,7 +8,9 @@
     ],
     "rules": [
       { "rule_set": "adblock", "action": "reject", "method": "drop" },
+      { "domain": ["github.com", "githubusercontent.com"], "action": "route", "server": "public" },
       { "domain": ["gh-proxy.com"], "action": "route", "server": "dns-bootstrap" },
+      { "rule_set": "geosite-github", "action": "route", "server": "public" },
       { "rule_set": "geosite-cn", "action": "route", "server": "local" },
       { "rule_set": "geosite-!cn", "action": "route", "server": "public" }
     ],
@@ -130,7 +133,7 @@
   },
   "log": {
     "disabled": false,
-    "level": "warn",
+    "level": "info",
     "timestamp": true
   }
 }
