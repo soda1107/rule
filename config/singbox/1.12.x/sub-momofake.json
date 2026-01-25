@@ -6,7 +6,7 @@
       { "tag": "dns-bootstrap", "type": "udp", "server": "211.137.96.205" }
     ],
     "rules": [
-      { "rule_set": "adblock", "action": "reject", "method": "dropped" },
+      { "rule_set": "adblock", "action": "reject", "method": "drop" },
       { "domain": ["gh-proxy.com"], "action": "route", "server": "dns-bootstrap" },
       { "rule_set": "geosite-cn", "action": "route", "server": "local" },
       { "rule_set": "geosite-!cn", "action": "route", "server": "public" }
