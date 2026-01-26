@@ -19,7 +19,6 @@
     "strategy": "prefer_ipv4",
     "independent_cache": true,
     "reverse_mapping": false,
-    "cache_algorithm": "lru",
     "cache_size": 4096
   },
   "outbounds": [
