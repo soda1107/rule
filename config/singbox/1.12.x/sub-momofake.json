@@ -18,8 +18,7 @@
     "final": "cloudflare-doh",
     "strategy": "prefer_ipv4",
     "independent_cache": true,
-    "reverse_mapping": false,
-    "cache_size": 4096
+    "reverse_mapping": false
   },
   "outbounds": [
     { "tag": "🚀 默认代理", "type": "selector", "outbounds": ["♻️ 自动选择", "🇸🇬 狮城手动", "🇯🇵 日本手动", "🇺🇲 美国手动", "🇭🇰 香港手动", "🐸 手动选择"] },
