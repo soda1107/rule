@@ -1,10 +1,10 @@
 {
   "dns": {
     "servers": [
-      { "tag": "ali-doq", "type": "quic", "server": "dns.alidns.com" },
-      { "tag": "tencent-doh", "type": "https", "server": "doh.pub" },
-      { "tag": "google-doh", "type": "https", "server": "dns.google" },
-      { "tag": "cloudflare-doh", "type": "https", "server": "cloudflare-dns.com" },
+      { "tag": "ali-doq", "type": "quic", "server": "dns.alidns.com", "domain_resolver": "dns-bootstrap" }, 
+      { "tag": "tencent-doh", "type": "https", "server": "doh.pub", "domain_resolver": "dns-bootstrap" }, 
+      { "tag": "google-doh", "type": "https", "server": "dns.google", "domain_resolver": "dns-bootstrap" }, 
+      { "tag": "cloudflare-doh", "type": "https", "server": "cloudflare-dns.com", "domain_resolver": "dns-bootstrap" },
       { "tag": "dns-bootstrap", "type": "udp", "server": "211.137.96.205"}
     ],
     "rules": [
