@@ -1,16 +1,14 @@
 {
   "dns": {
     "servers": [
-      { "tag": "ali-doq", "type": "quic", "server": "dns.alidns.com", "domain_resolver": "dns-boot" }, 
-      { "tag": "tencent-doh", "type": "https", "server": "doh.pub", "domain_resolver": "dns-boot" }, 
-      { "tag": "google-doh", "type": "https", "server": "dns.google", "domain_resolver": "dns-boot" }, 
-      { "tag": "cloudflare-doh", "type": "tls", "server": "1.1.1.1"},
-      { "tag": "dns-bootstrap", "type": "udp", "server": "211.137.96.205"},
-      { "tag": "dns-boot", "type": "udp", "server": "223.5.5.5"}
+      { "tag": "ali-doq", "type": "quic", "server": "dns.alidns.com" ,"domain_resolver":"dns-bootstrap" }, 
+      { "tag": "tencent-doh", "type": "https", "server": "doh.pub","domain_resolver":"dns-bootstrap" }, 
+      { "tag": "google-doh", "type": "https", "server": "8.8.8.8" ,"domain_resolver":"dns-bootstrap","detour": "🚀 默认代理"}, 
+      { "tag": "cloudflare-doh", "type": "tls", "server": "1.1.1.1","detour": "🚀 默认代理"},
+      { "tag": "dns-bootstrap", "type": "udp", "server": "211.137.96.205"}
     ],
     "rules": [
       { "rule_set": "adblock", "action": "reject", "method": "drop" },
-      { "domain": ["gh-proxy.com"], "server": "dns-bootstrap" },
       { "rule_set": "geosite-google", "server": "google-doh" },
       { "rule_set": ["geosite-tencent", "geosite-apple"], "server": "tencent-doh" },
       { "rule_set": "geosite-bilibili", "server": "dns-bootstrap" },
@@ -49,7 +47,6 @@
     { "tag": "🚫 广告拦截", "type": "block" }
   ],
   "route": {
-    "default_domain_resolver": "ali-doq",
     "rules": [
       { "action": "sniff", "sniffer": ["http", "tls", "quic", "dns"] },
       { "inbound": "dns-in", "action": "hijack-dns" },
@@ -104,7 +101,8 @@
       { "tag": "geoip-netflix", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/binary/geoip-netflix.srs", "download_detour": "🎯 全球直连" },
       { "tag": "geoip-cn", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/binary/geoip-cn.srs", "download_detour": "🎯 全球直连" }
     ],
-    "final": "🐠 漏网之鱼"
+    "final": "🐠 漏网之鱼",
+    "default_domain_resolver": {"server": "ali-doq"}
   },
   "inbounds": [
     { "tag": "dns-in", "type": "direct", "listen": "::", "listen_port": 1053 },
