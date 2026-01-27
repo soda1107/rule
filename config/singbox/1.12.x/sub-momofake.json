@@ -1,11 +1,11 @@
 {
   "dns": {
     "servers": [
-      { "tag": "ali-doq", "type": "quic", "server": "dns.alidns.com",  "detour": "🎯 全球直连" },
-      { "tag": "tencent-doh", "type": "https", "server": "doh.pub", "detour": "🎯 全球直连" },
-      { "tag": "google-doh", "type": "https", "server": "dns.google", "detour": "🍀 Google" },
-      { "tag": "cloudflare-doh", "type": "https", "server": "cloudflare-dns.com", "detour": "🚀 默认代理" },
-      { "tag": "dns-bootstrap", "type": "udp", "server": "211.137.96.205", "detour": "🎯 全球直连" }
+      { "tag": "ali-doq", "type": "quic", "server": "dns.alidns.com" },
+      { "tag": "tencent-doh", "type": "https", "server": "doh.pub" },
+      { "tag": "google-doh", "type": "https", "server": "dns.google" },
+      { "tag": "cloudflare-doh", "type": "https", "server": "cloudflare-dns.com" },
+      { "tag": "dns-bootstrap", "type": "udp", "server": "211.137.96.205"}
     ],
     "rules": [
       { "rule_set": "adblock", "action": "reject", "method": "drop" },
@@ -47,6 +47,7 @@
     { "tag": "🚫 广告拦截", "type": "block" }
   ],
   "route": {
+    "default_domain_resolver": "dns-bootstrap",
     "rules": [
       { "action": "sniff", "sniffer": ["http", "tls", "quic", "dns"] },
       { "inbound": "dns-in", "action": "hijack-dns" },
