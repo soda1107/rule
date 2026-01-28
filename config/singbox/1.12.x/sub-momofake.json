@@ -3,10 +3,9 @@
     "servers": [
       { "tag": "ali-doq", "type": "quic", "server": "dns.alidns.com" ,"domain_resolver":"dns-bootstrap" }, 
       { "tag": "tencent-doh", "type": "https", "server": "doh.pub","domain_resolver":"dns-bootstrap" }, 
-      { "tag": "google-doh", "type": "https", "server": "dns.google" ,"domain_resolver":"dns-boot","detour": "🇭🇰 香港手动"}, 
+      { "tag": "google-doh", "type": tls", "server": "8.8.8.8", "detour": "🇭🇰 香港手动"}, 
       { "tag": "cloudflare-doh", "type": "tls", "server": "1.1.1.1","detour": "🇭🇰 香港手动"},
-      { "tag": "dns-bootstrap", "type": "udp", "server": "211.137.96.205"},
-      { "tag": "dns-boot", "type": "udp", "server": "8.8.8.8"}
+      { "tag": "dns-bootstrap", "type": "udp", "server": "211.137.96.205"}
     ],
     "rules": [
       { "rule_set": "geosite-google", "server": "google-doh" },
