@@ -4,7 +4,7 @@
       { "tag": "ali-doq", "type": "quic", "server": "dns.alidns.com" ,"domain_resolver":"dns-bootstrap" }, 
       { "tag": "tencent-doh", "type": "https", "server": "doh.pub","domain_resolver":"dns-bootstrap" }, 
       { "tag": "google-doh", "type": "h3", "server": "dns.google", "detour": "🇭🇰 香港手动"}, 
-      { "tag": "cloudflare-doh", "type": "tls", "server": "1.1.1.1","detour": "🇭🇰 香港手动"},
+      { "tag": "cloudflare-doh", "type": "https", "server": "cloudflare-dns.com","detour": "🇭🇰 香港手动"},
       { "tag": "dns-bootstrap", "type": "local"}
     ],
     "rules": [
@@ -35,7 +35,7 @@
     { "tag": "🐬 OneDrive", "type": "selector", "outbounds": ["🎯 全球直连", "🇸🇬 狮城手动", "🇯🇵 日本手动", "🇺🇲 美国手动", "🐸 手动选择"] },
     { "tag": "🍏 Apple", "type": "selector", "outbounds": ["🎯 全球直连", "🇯🇵 日本手动", "🇸🇬 狮城手动", "🇺🇲 美国手动"] },
     { "tag": "🐠 漏网之鱼", "type": "selector", "outbounds": ["🚀 默认代理", "🎯 全球直连"] },
-    { "tag": "🇭🇰 香港手动", "type": "urltest", "outbounds": [] },
+    { "tag": "🇭🇰 香港手动", "type": "urltest", "outbounds": [] ,"interval": "300","tolerance": "100","lazy": true,"timeout": "5"},
     { "tag": "🇯🇵 日本手动", "type": "urltest", "outbounds": [] },
     { "tag": "🇸🇬 狮城手动", "type": "urltest", "outbounds": [] },
     { "tag": "🇺🇲 美国手动", "type": "urltest", "outbounds": [] },
