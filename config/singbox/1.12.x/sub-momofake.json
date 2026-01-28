@@ -46,7 +46,7 @@
   ],
   "route": {
     "rules": [
-      { "action": "sniff", "sniffer": ["http", "tls", "quic", "dns"] },
+      { "action": "sniff", "sniffer": ["http", "tls", "quic"] },
       { "inbound": "dns-in", "action": "hijack-dns" },
       { "rule_set": "adblock", "action": "reject" },
       { "ip_cidr": ["5.28.195.2/32"], "action": "route", "outbound": "🚀 默认代理" },
