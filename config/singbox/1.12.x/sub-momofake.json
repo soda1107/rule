@@ -17,6 +17,7 @@
     "final": "ali-doq",
     "strategy": "prefer_ipv4",
     "independent_cache": true,
+    "cache_capacity": 32768,
     "reverse_mapping": false
   },
   "outbounds": [
