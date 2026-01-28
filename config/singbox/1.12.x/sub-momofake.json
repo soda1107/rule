@@ -5,7 +5,7 @@
       { "tag": "tencent-doh", "type": "https", "server": "doh.pub","domain_resolver":"dns-bootstrap" }, 
       { "tag": "google-doh", "type": "https", "server": "8.8.4.4", "detour": "🇭🇰 香港手动"}, 
       { "tag": "cloudflare-doh", "type": "tls", "server": "1.1.1.1","detour": "🇭🇰 香港手动"},
-      { "tag": "dns-bootstrap", "type": "udp", "server": "211.137.96.205"}
+      { "tag": "dns-bootstrap", "type": "local"}
     ],
     "rules": [
       { "rule_set": "geosite-google", "server": "google-doh" },
