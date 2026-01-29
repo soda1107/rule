@@ -3,11 +3,12 @@
     "servers": [
       { "tag": "ali-doq", "type": "quic", "server": "dns.alidns.com" ,"domain_resolver":"dns-bootstrap" }, 
       { "tag": "tencent-doh", "type": "https", "server": "doh.pub","domain_resolver":"dns-bootstrap" }, 
-      { "tag": "google-doh", "type": "https", "server": "dns.google", "detour": "🇭🇰 香港手动"}, 
-      { "tag": "cloudflare-doh", "type": "https", "server": "cloudflare-dns.com","detour": "🇭🇰 香港手动"},
+      { "tag": "google-doh", "type": "https", "server": "dns.google", "detour": "🇭🇰 香港手动", "domain_resolver":"dns-bootstrap"}, 
+      { "tag": "cloudflare-doh", "type": "https", "server": "cloudflare-dns.com","detour": "🇭🇰 香港手动", "domain_resolver": {  "server": "dns-bootstrap",  "strategy": "ipv4_only"}},
       { "tag": "dns-bootstrap", "type": "local"}
     ],
     "rules": [
+      { "rule_set": "adblock", "action": "reject" },
       { "rule_set": "geosite-google", "server": "google-doh" },
       { "rule_set": ["geosite-tencent", "geosite-apple"], "server": "tencent-doh" },
       { "rule_set": "geosite-bilibili", "server": "dns-bootstrap" },
@@ -126,7 +127,8 @@
     "cache_file": {
       "enabled": true,
       "path": "/etc/momo/run/cache.db",
-      "store_fakeip": false
+      "store_fakeip": false,
+      "store_rdrc": true
     },
     "clash_api": {
       "external_controller": "0.0.0.0:9095",
