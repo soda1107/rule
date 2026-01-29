@@ -50,7 +50,6 @@
     "rules": [
       { "action": "sniff", "sniffer": ["http", "tls", "quic"] },
       { "inbound": "dns-in", "action": "hijack-dns" },
-      { "rule_set": "adblock", "action": "reject" },
       { "ip_cidr": ["5.28.195.2/32"], "action": "route", "outbound": "🚀 默认代理" },
       { "ip_is_private": true, "outbound": "🎯 全球直连" },
       { "clash_mode": "direct", "outbound": "🎯 全球直连" },
