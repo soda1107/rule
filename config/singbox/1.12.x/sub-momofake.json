@@ -9,7 +9,7 @@
     ],
     "rules": [
       { "rule_set": "adblock", "action": "reject", "disable_cache": true},
-      { "domain_suffix": ["gh-proxy.com","ghproxy.com"], "action": "route", "server": "dns-bootstrap"},
+      { "domain_suffix": ["gh-proxy.com","ghproxy.com"], "action": "route", "server": "ali-doq"},
       { "rule_set": "geosite-google", "action": "route", "server": "google-doh" },
       { "rule_set": ["geosite-tencent", "geosite-apple"], "action": "route", "server": "tencent-doh" },
       { "rule_set": "geosite-github", "action": "route", "server": "cloudflare-doh" },
