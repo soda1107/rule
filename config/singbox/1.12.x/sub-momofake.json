@@ -8,7 +8,7 @@
       { "tag": "dns-bootstrap", "type": "local"}
     ],
     "rules": [
-      { "rule_set": "adblock", "action": "reject" },
+      { "rule_set": "adblock", "action": "reject", "disable_cache": true},
       { "rule_set": "geosite-google", "server": "google-doh" },
       { "rule_set": ["geosite-tencent", "geosite-apple"], "server": "tencent-doh" },
       { "rule_set": "geosite-bilibili", "server": "dns-bootstrap" },
