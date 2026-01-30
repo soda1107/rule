@@ -61,7 +61,7 @@
       { "rule_set": "geosite-github", "outbound": "👨‍💻 Github" },
       { "rule_set": "geosite-onedrive", "outbound": "🐬 OneDrive" },
       { "rule_set": "geosite-microsoft", "outbound": "🪟 Microsoft" },
-      { "rule_set": ["geosite-apple", "geoip-apple"], "action": "bypass"  },
+      { "rule_set": ["geosite-apple", "geoip-apple"], "outbound": "🎯 全球直连" },
       { "rule_set": "geosite-telegram", "outbound": "📲 Telegram" },
       { "rule_set": "geosite-tiktok", "outbound": "🎵 TikTok" },
       { "rule_set": "geosite-netflix", "outbound": "🎥 Netflix" },
