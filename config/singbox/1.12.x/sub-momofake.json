@@ -9,12 +9,11 @@
     ],
     "rules": [
       { "rule_set": "adblock", "action": "reject", "disable_cache": true},
-      { "rule_set": "geosite-google", "action": "route", "server": "google-doh" },
       { "rule_set": ["geosite-tencent", "geosite-apple"], "action": "route", "server": "tencent-doh" },
-      { "rule_set": "geosite-github", "action": "route", "server": "cloudflare-doh" },
       { "rule_set": "geosite-bilibili", "action": "route", "server": "dns-bootstrap" },
-      { "rule_set": "geosite-!cn", "action": "route",  "server": "cloudflare-doh" },
-      { "rule_set": "geosite-cn", "action": "route", "server": "ali-doq" }
+      { "rule_set": ["geosite-cn","geosite-google-cn","geosite-google-play-cn"], "action": "route", "server": "ali-doq" },
+      { "rule_set": "geosite-google", "action": "route", "server": "google-doh" },
+      { "rule_set": ["geosite-github","geosite-!cn"], "action": "route",  "server": "cloudflare-doh" }
     ],
     "final": "ali-doq",
     "strategy": "prefer_ipv4",
@@ -42,7 +41,7 @@
     { "tag": "♻️ 自动选择", "type": "urltest", "outbounds": [] },
     { "tag": "🍃 延迟辅助", "type": "urltest", "outbounds": ["🚀 默认代理", "🎯 全球直连"] },
     { "tag": "GLOBAL", "type": "selector", "outbounds": ["🚀 默认代理", "🧠 AI", "📹 YouTube", "🍀 Google", "👨‍💻 Github", "📲 Telegram",  "🎮 Steam", "🪟 Microsoft", "🐬 OneDrive", "🍏 Apple", "🐠 漏网之鱼", "🇭🇰 香港手动", "🇯🇵 日本手动", "🇸🇬 狮城手动", "🇺🇲 美国手动", "🐸 手动选择", "♻️ 自动选择", "🍃 延迟辅助", "🎯 全球直连"] },
-    { "tag": "🎯 全球直连", "type": "direct","connect_timeout": "5s","tcp_fast_open":true }
+    { "tag": "🎯 全球直连", "type": "direct","connect_timeout": "60s","tcp_fast_open":true, "tcp_keep_alive":"5m","tcp_keep_alive_interval":"75s" }
   ],
   "route": {
     "rules": [
@@ -54,26 +53,29 @@
       { "clash_mode": "global", "outbound": "GLOBAL" },
       { "rule_set": "geoip-cn", "outbound": "🎯 全球直连" },
       { "rule_set": "geosite-bilibili", "outbound": "🎯 全球直连" },
+      { "rule_set": ["geosite-apple", "geoip-apple","geosite-google-play-cn", "geosite-google-cn"], "outbound": "🎯 全球直连" },
       { "rule_set": "geosite-ai", "outbound": "🧠 AI" },
       { "rule_set": "geosite-youtube", "outbound": "📹 YouTube" },
       { "rule_set": "geosite-google", "outbound": "🍀 Google" },
       { "rule_set": "geosite-github", "outbound": "👨‍💻 Github" },
       { "rule_set": "geosite-onedrive", "outbound": "🐬 OneDrive" },
-      { "rule_set": "geosite-microsoft", "outbound": "🪟 Microsoft" },
-      { "rule_set": ["geosite-apple", "geoip-apple"], "outbound": "🎯 全球直连" },
+      { "rule_set": ["geosite-microsoft", "geosite-azure"], "outbound": "🪟 Microsoft" },
       { "rule_set": "geosite-telegram", "outbound": "📲 Telegram" },
       { "rule_set": "geosite-steamcn", "outbound": "🎯 全球直连" },
       { "rule_set": "geosite-steam", "outbound": "🎮 Steam" },
-      { "rule_set": "geosite-!cn", "outbound": "🚀 默认代理" },
-      { "rule_set": "geosite-cn", "outbound": "🎯 全球直连" },
       { "rule_set": "geoip-google", "outbound": "🍀 Google" },
       { "rule_set": "geoip-telegram", "outbound": "📲 Telegram" }
+      { "rule_set": "geosite-!cn", "outbound": "🚀 默认代理" },
+      { "rule_set": "geosite-cn", "outbound": "🎯 全球直连" }
     ],
     "rule_set": [
       { "tag": "adblock", "type": "remote", "format": "binary", "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-ads-all.srs", "download_detour": "🎯 全球直连" },
       { "tag": "geosite-ai", "type": "remote", "format": "binary", "url": "https://v6.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-ai-!cn.srs", "download_detour": "🎯 全球直连" },
-      { "tag": "geosite-youtube", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/youtube.srs", "download_detour": "🎯 全球直连" },
+      { "tag": "geosite-youtube", "type": "remote", "format": "binary", "url": "https://v6.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/youtube.srs", "download_detour": "🎯 全球直连" },
+      { "tag": "geosite-google-play-cn", "type": "remote", "format": "binary", "url": "https://v6.gh-proxy.org/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/google-play@cn.srs", "download_detour": "🎯 全球直连" },
+      { "tag": "geosite-google-cn", "type": "remote", "format": "binary", "url": "https://v6.gh-proxy.org/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/google-cn.srs", "download_detour": "🎯 全球直连" },
       { "tag": "geosite-google", "type": "remote", "format": "binary", "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/google.srs", "download_detour": "🎯 全球直连" },
+      { "tag": "geosite-azure", "type": "remote", "format": "binary", "url": "https://v6.gh-proxy.org/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/azure.srs", "download_detour": "🎯 全球直连" },
       { "tag": "geosite-github", "type": "remote", "format": "binary", "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/github.srs", "download_detour": "🎯 全球直连" },
       { "tag": "geosite-onedrive", "type": "remote", "format": "binary", "url": "https://v6.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/onedrive.srs", "download_detour": "🎯 全球直连" },
       { "tag": "geosite-microsoft", "type": "remote", "format": "binary", "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/microsoft.srs", "download_detour": "🎯 全球直连" },
@@ -91,7 +93,8 @@
       { "tag": "geoip-cn", "type": "remote", "format": "binary", "url": "https://v6.gh-proxy.org/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/cn.srs", "download_detour": "🎯 全球直连" }
     ],
     "final": "🐠 漏网之鱼",
-    "default_domain_resolver": {"server": "ali-doq"}
+    "default_domain_resolver": {"server": "ali-doq"},
+    "auto_detect_interface": true
   },
   "inbounds": [
     { "tag": "dns-in", "type": "direct", "listen": "::", "listen_port": 1053 },
@@ -106,6 +109,7 @@
       "address": ["172.31.0.1/30", "fdfe:dcba:9876::1/126"],
       "auto_route": true,
       "auto_redirect": true,
+      "strict_route": true,
       "route_exclude_address":[
         "192.168.0.0/16",
         "10.0.0.0/8",
