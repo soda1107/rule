@@ -5,7 +5,7 @@
       { "tag": "tencent-doh", "type": "https", "server": "doh.pub","domain_resolver":"dns-bootstrap" }, 
       { "tag": "google-doh", "type": "https", "server": "dns.google", "detour": "🇭🇰 香港手动"}, 
       { "tag": "cloudflare-doh", "type": "https", "server": "cloudflare-dns.com","detour": "🇭🇰 香港手动", "domain_resolver": {  "server": "dns-bootstrap",  "strategy": "ipv4_only"}},
-      { "tag": "dns-bootstrap", "type": "local", "address":"211.137.96.205"}
+      { "tag": "dns-bootstrap", "type": "local"}
     ],
     "rules": [
       { "rule_set": "adblock", "action": "reject", "disable_cache": true},
