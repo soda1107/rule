@@ -4,7 +4,6 @@
       { "tag": "ali-doq", "type": "quic", "server": "dns.alidns.com" ,"domain_resolver":"dns-bootstrap" }, 
       { "tag": "tencent-doh", "type": "https", "server": "doh.pub","domain_resolver":"dns-bootstrap" }, 
       { "tag": "google-doh", "type": "https", "server": "dns.google", "detour": "🍀 Google"}, 
-      { "tag": "cloudflare-doh", "type": "h3", "server": "cloudflare-dns.com", "domain_resolver": {  "server": "dns-bootstrap",  "strategy": "ipv4_only"}},
       { "tag": "dns-bootstrap", "type": "local"}
     ],
     "rules": [
@@ -17,7 +16,7 @@
       { "rule_set": ["geosite-cn","geosite-google-cn","geosite-google-play-cn"], "action": "route", "server": "ali-doq" },
       { "rule_set": ["geosite-github","geosite-!cn","geosite-google"], "action": "route",  "server": "google-doh" }
     ],
-    "final": "cloudflare-doh",
+    "final": "ali-doq",
     "strategy": "prefer_ipv4",
     "independent_cache": true,
     "cache_capacity": 32768,
