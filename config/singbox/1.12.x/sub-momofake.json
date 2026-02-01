@@ -4,7 +4,7 @@
       { "tag": "ali-doq", "type": "h3", "server": "dns.alidns.com" ,"domain_resolver":"dns-bootstrap" }, 
       { "tag": "tencent-doh", "type": "https", "server": "doh.pub","domain_resolver":"dns-bootstrap" }, 
       { "tag": "google-doh", "type": "https", "server": "dns.google", "detour": "🇭🇰 香港手动"}, 
-      { "tag": "cloudflare-doh", "type": "https", "server": "cloudflare-dns.com","detour": "🇭🇰 香港手动", "domain_resolver": {  "server": "dns-bootstrap",  "strategy": "ipv4_only"}},
+      { "tag": "cloudflare-doh", "type": "https", "server": "1.1.1.1","detour": "🇭🇰 香港手动"},
       { "tag": "dns-bootstrap", "type": "local"}
     ],
     "rules": [
@@ -107,19 +107,8 @@
       "type": "tun",
       "interface_name": "momo",
       "address": ["172.31.0.1/30", "fdfe:dcba:9876::1/126"],
-      "auto_route": true,
-      "auto_redirect": true,
-      "strict_route": true,
-      "route_exclude_address":[
-        "192.168.0.0/16",
-        "10.0.0.0/8",
-        "172.16.0.0/12",
-        "169.254.0.0/16",
-        "224.0.0.0/4"
-      ],
-      "stack": "system",
-      "sniff": true,
-      "sniff_override_destination": true
+      "auto_route": false,
+      "auto_redirect": false
     }
   ],
   "experimental": {
