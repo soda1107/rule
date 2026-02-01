@@ -88,6 +88,7 @@
       { "tag": "geosite-cn", "type": "remote", "format": "binary", "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/cn.srs", "download_detour": "🎯 全球直连" },
       { "tag": "geoip-google", "type": "remote", "format": "binary", "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/google.srs", "download_detour": "🎯 全球直连" },
       { "tag": "geoip-apple", "type": "remote", "format": "binary", "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo-lite/geoip/apple.srs", "download_detour": "🎯 全球直连" },
+      { "tag": "geoip-private", "type": "remote", "format": "binary", "url": "https://v6.gh-proxy.org/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/private.srs", "download_detour": "🎯 全球直连" },
       { "tag": "geoip-cn", "type": "remote", "format": "binary", "url": "https://v6.gh-proxy.org/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/cn.srs", "download_detour": "🎯 全球直连" }
     ],
     "final": "🐠 漏网之鱼",
@@ -105,8 +106,17 @@
       "type": "tun",
       "interface_name": "momo",
       "address": ["172.31.0.1/30", "fdfe:dcba:9876::1/126"],
-      "auto_route": false,
-      "auto_redirect": false
+      "auto_route": true,
+      "auto_redirect": true,
+      "stack": "system",
+      "route_exclude_address": [  
+        "192.168.0.0/16",  
+        "10.0.0.0/8",  
+        "172.16.0.0/12",  
+        "127.0.0.0/8",  
+        "fc00::/7"  
+      ],  
+  "route_exclude_address_set": ["geoip-cn","geoip-private"]
     }
   ],
   "experimental": {
