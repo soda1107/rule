@@ -9,6 +9,7 @@
     ],
     "rules": [
       { "rule_set": "adblock", "action": "reject", "disable_cache": true},
+      {"query_type": "HTTPS", "action": "reject"},
       { "rule_set": ["geosite-tencent", "geosite-apple"], "action": "route", "server": "tencent-doh" },
       { "rule_set": "geosite-bilibili", "action": "route", "server": "dns-bootstrap" },
       { "rule_set": ["geosite-cn","geosite-google-cn","geosite-google-play-cn"], "action": "route", "server": "ali-doq" },
