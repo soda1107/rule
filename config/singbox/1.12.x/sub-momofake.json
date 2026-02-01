@@ -8,6 +8,8 @@
       { "tag": "dns-bootstrap", "type": "local"}
     ],
     "rules": [
+      {"query_type": "PTR", "action": "route", "server": "dns-bootstrap"},  
+      {"suffix": ["in-addr.arpa", "ip6.arpa"], "action": "route", "server": "dns-bootstrap"},
       { "rule_set": "adblock", "action": "reject", "disable_cache": true},
       {"query_type": "HTTPS", "action": "reject"},
       { "rule_set": ["geosite-tencent", "geosite-apple"], "action": "route", "server": "tencent-doh" },
