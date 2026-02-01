@@ -1,7 +1,7 @@
 {
   "dns": {
     "servers": [
-      { "tag": "ali-doq", "type": "h3", "server": "dns.alidns.com" ,"domain_resolver":"dns-bootstrap" }, 
+      { "tag": "ali-doq", "type": "quic", "server": "dns.alidns.com" ,"domain_resolver":"dns-bootstrap" }, 
       { "tag": "tencent-doh", "type": "https", "server": "doh.pub","domain_resolver":"dns-bootstrap" }, 
       { "tag": "google-doh", "type": "https", "server": "dns.google", "detour": "🍀 Google"}, 
       { "tag": "cloudflare-doh", "type": "h3", "server": "cloudflare-dns.com", "domain_resolver": {  "server": "dns-bootstrap",  "strategy": "ipv4_only"}},
@@ -9,7 +9,7 @@
     ],
     "rules": [
       { "query_type": "PTR", "action": "route", "server": "dns-bootstrap"},  
-      { "domain_suffix": ["in-addr.arpa", "ip6.arpa"], "action": "route", "server": "dns-bootstrap"},
+      { "domain_suffix": ["in-addr.arpa", "ip6.arpa","lan", "local"], "action": "route", "server": "dns-bootstrap"},
       { "rule_set": "adblock", "action": "reject", "disable_cache": true},
       { "query_type": "HTTPS", "action": "reject"},
       { "rule_set": ["geosite-tencent", "geosite-apple"], "action": "route", "server": "tencent-doh" },
