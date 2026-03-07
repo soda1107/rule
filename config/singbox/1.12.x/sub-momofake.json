@@ -3,7 +3,7 @@
     "servers": [
       { "tag": "ali-doq", "type": "quic", "server": "dns.alidns.com" ,"domain_resolver":"dns-bootstrap" }, 
       { "tag": "tencent-doh", "type": "https", "server": "doh.pub","domain_resolver":"dns-bootstrap" }, 
-      { "tag": "google-doh", "type": "https", "server": "dns.google", "detour": "🍀 Google"}, 
+      { "tag": "google-doh", "type": "https", "server": "dns.google"}, 
       { "tag": "dns-bootstrap", "type": "local"}
     ],
     "rules": [
@@ -26,9 +26,9 @@
     { "tag": "🚀 默认代理", "type": "selector", "outbounds": ["♻️ 自动选择", "🇸🇬 狮城手动", "🇯🇵 日本手动", "🇺🇲 美国手动", "🇭🇰 香港手动", "🐸 手动选择"] },
     { "tag": "🧠 AI", "type": "selector", "outbounds": ["🇸🇬 狮城手动", "🇯🇵 日本手动", "🇺🇲 美国手动"] },
     { "tag": "📹 YouTube", "type": "selector", "outbounds": ["🇸🇬 狮城手动", "🇯🇵 日本手动", "🇺🇲 美国手动", "🇭🇰 香港手动", "🐸 手动选择"] },
-    { "tag": "🍀 Google", "type": "selector", "outbounds": ["🇯🇵 日本手动", "🇸🇬 狮城手动", "🇺🇲 美国手动", "🇭🇰 香港手动", "🐸 手动选择"] },
-    { "tag": "👨‍💻 Github", "type": "selector", "outbounds": ["🇯🇵 日本手动", "🇸🇬 狮城手动", "🇺🇲 美国手动", "🎯 全球直连", "🇭🇰 香港手动", "🐸 手动选择"] },
-    { "tag": "📲 Telegram", "type": "selector", "outbounds": ["🇸🇬 狮城手动", "🇯🇵 日本手动", "🇺🇲 美国手动", "🇭🇰 香港手动", "🐸 手动选择"] },
+    { "tag": "🍀 Google", "type": "selector", "outbounds": ["♻️ 自动选择","🇯🇵 日本手动", "🇸🇬 狮城手动", "🇺🇲 美国手动", "🇭🇰 香港手动", "🐸 手动选择"] },
+    { "tag": "👨‍💻 Github", "type": "selector", "outbounds": ["♻️ 自动选择","🇯🇵 日本手动", "🇸🇬 狮城手动", "🇺🇲 美国手动", "🎯 全球直连", "🇭🇰 香港手动", "🐸 手动选择"] },
+    { "tag": "📲 Telegram", "type": "selector", "outbounds": ["♻️ 自动选择","🇸🇬 狮城手动", "🇯🇵 日本手动", "🇺🇲 美国手动", "🇭🇰 香港手动", "🐸 手动选择"] },
     { "tag": "🎮 Steam", "type": "selector", "outbounds": ["🎯 全球直连", "🇸🇬 狮城手动", "🇯🇵 日本手动", "🇺🇲 美国手动", "🇭🇰 香港手动", "🐸 手动选择"] },
     { "tag": "🪟 Microsoft", "type": "selector", "outbounds": ["🎯 全球直连", "🇸🇬 狮城手动", "🇯🇵 日本手动", "🇺🇲 美国手动", "🐸 手动选择"] },
     { "tag": "🐬 OneDrive", "type": "selector", "outbounds": ["🎯 全球直连", "🇸🇬 狮城手动", "🇯🇵 日本手动", "🇺🇲 美国手动", "🐸 手动选择"] },
@@ -54,6 +54,7 @@
       { "clash_mode": "global", "outbound": "GLOBAL" },
       { "rule_set": "geoip-cn", "outbound": "🎯 全球直连" },
       { "rule_set": "geosite-bilibili", "outbound": "🎯 全球直连" },
+      { "ip_version": 6, "outbound": "🎯 全球直连" },
       { "rule_set": ["geosite-apple", "geoip-apple","geosite-google-play-cn", "geosite-google-cn"], "outbound": "🎯 全球直连" },
       { "rule_set": "geosite-ai", "outbound": "🧠 AI" },
       { "rule_set": "geosite-youtube", "outbound": "📹 YouTube" },
