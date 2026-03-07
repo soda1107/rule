@@ -3,7 +3,7 @@
     "servers": [
       { "tag": "ali-doq", "type": "quic", "server": "dns.alidns.com" ,"domain_resolver":"dns-bootstrap" }, 
       { "tag": "tencent-doh", "type": "https", "server": "doh.pub","domain_resolver":"dns-bootstrap" }, 
-      { "tag": "google-doh", "type": "https", "server": "dns.google","domain_resolver":"dns-bootstrap"}, 
+      { "tag": "google-doh", "type": "https", "server": "dns.google","domain_resolver":"dns-bootstrap","detour": "🍀 Google"}, 
       { "tag": "dns-bootstrap", "type": "local"}
     ],
     "rules": [
