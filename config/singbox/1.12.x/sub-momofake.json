@@ -12,8 +12,8 @@
       {  "query_type": ["HTTPS", "SVCB"], "rule_set": "geosite-!cn",  "action": "route",   "server": "google-doh"  },
       { "domain_suffix": ["in-addr.arpa", "ip6.arpa","lan", "local"], "action": "route", "server": "dns-bootstrap"},
       { "rule_set": "adblock", "action": "reject", "disable_cache": true},
-      { "rule_set": ["geosite-tencent", "geosite-apple"], "action": "route", "server": "tencent-doh" },
-      { "rule_set": "geosite-bilibili", "action": "route", "server": "dns-bootstrap" },
+      { "rule_set": ["geosite-tencent"], "action": "route", "server": "tencent-doh" },
+      { "rule_set": ["geosite-bilibili", "geosite-apple"],"action": "route", "server": "dns-bootstrap" },
       { "rule_set": ["geosite-cn","geosite-google-cn","geosite-google-play-cn"], "action": "route", "server": "ali-doq" },
       { "rule_set": ["geosite-github","geosite-!cn","geosite-google"], "action": "route",  "server": "google-doh" }
     ],
