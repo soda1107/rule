@@ -3,7 +3,7 @@
     "servers": [
       { "tag": "ali-doq", "type": "quic", "server": "dns.alidns.com" ,"domain_resolver":"dns-bootstrap","detour": "🎯 全球直连" }, 
       { "tag": "tencent-doh", "type": "https", "server": "doh.pub","domain_resolver":"dns-bootstrap","detour": "🎯 全球直连" }, 
-      { "tag": "google-doh", "type": "h3", "server": "dns.google","domain_resolver":"dns-bootstrap","detour": "🍀 Google"}, 
+      { "tag": "google-doh", "type": "https", "server": "dns.google","domain_resolver":"dns-bootstrap","detour": "🍀 Google"}, 
       { "tag": "dns-bootstrap", "type": "local"}
     ],
     "rules": [
@@ -15,7 +15,6 @@
       { "rule_set": ["geosite-tencent"], "action": "route", "server": "tencent-doh" },
       { "rule_set": ["geosite-bilibili", "geosite-apple"],"action": "route", "server": "dns-bootstrap" },
       { "rule_set": ["geosite-cn","geosite-google-cn","geosite-google-play-cn"], "action": "route", "server": "ali-doq" },
-      {"domain": "dns.google","action": "route","server": "dns-bootstrap", "strategy": "prefer_ipv6" },
       { "rule_set": ["geosite-github","geosite-!cn","geosite-google"], "action": "route",  "server": "google-doh" }
     ],
     "final": "ali-doq",
