@@ -4,6 +4,7 @@
       { "tag": "ali-doq", "type": "h3", "server": "dns.alidns.com" ,"domain_resolver":"dns-bootstrap","detour": "🎯 全球直连" }, 
       { "tag": "tencent-doh", "type": "https", "server": "doh.pub","domain_resolver":"dns-bootstrap","detour": "🎯 全球直连" }, 
       { "tag": "google-doh", "type": "https", "server": "dns.google","domain_resolver":"dns-bootstrap","detour": "🍀 Google"}, 
+      { "tag": "ip-resolver", "type": "quic", "server": "223.5.5.5"},
       { "tag": "dns-bootstrap", "type": "local"}
     ],
     "rules": [
@@ -95,7 +96,7 @@
       { "tag": "geoip-cn", "type": "remote", "format": "binary", "url": "https://v6.gh-proxy.org/https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/ChinaIPs/ChinaIPs.srs", "download_detour": "🎯 全球直连" }
     ],
     "final": "🐠 漏网之鱼",
-    "default_domain_resolver": {"server": "223.5.5.5","type":"quic"},
+    "default_domain_resolver": {"server": "ip-resolver"},
     "auto_detect_interface": true
   },
   "inbounds": [
