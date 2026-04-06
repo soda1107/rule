@@ -57,7 +57,7 @@
       { "clash_mode": "global", "outbound": "GLOBAL" },
       { "rule_set": "geoip-cn", "outbound": "🎯 全球直连" },
       { "rule_set": "geosite-bilibili", "outbound": "🎯 全球直连" },
-      { "rule_set": ["geosite-apple", "geoip-apple","geosite-google-play-cn", "geosite-google-cn"], "outbound": "🎯 全球直连" },
+      { "rule_set": ["geosite-apple", "geoip-apple","geosite-google-play-cn"], "outbound": "🎯 全球直连" },
       { "rule_set": "geosite-ai", "outbound": "🧠 AI" },
       { "rule_set": "geosite-youtube", "outbound": "📹 YouTube" },
       { "rule_set": "geosite-google", "outbound": "🍀 Google" },
