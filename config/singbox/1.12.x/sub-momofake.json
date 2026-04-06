@@ -4,7 +4,6 @@
       { "tag": "ali-doq", "type": "h3", "server": "dns.alidns.com" ,"domain_resolver":"dns-bootstrap","detour": "🎯 全球直连" }, 
       { "tag": "tencent-doh", "type": "https", "server": "doh.pub","domain_resolver":"dns-bootstrap","detour": "🎯 全球直连" }, 
       { "tag": "google-doh", "type": "https", "server": "dns.google","domain_resolver":"dns-bootstrap","detour": "🍀 Google"}, 
-      { "tag": "apple-doh", "type": "https", "server": "doh.dns.apple.com","domain_resolver":"dns-bootstrap","detour": "🎯 全球直连" },
       { "tag": "ip-resolver", "type": "quic", "server": "223.5.5.5"},
       { "tag": "dns-bootstrap", "type": "local"}
     ],
@@ -13,7 +12,7 @@
       { "rule_set": "adblock", "action": "reject"},
       { "rule_set": ["geosite-tencent"], "action": "route", "server": "tencent-doh" },
       { "rule_set": ["geosite-bilibili"],"action": "route", "server": "dns-bootstrap" },
-      { "rule_set": ["geosite-apple"],"action": "route", "server": "apple-doh" },
+      { "rule_set": ["geosite-apple"],"action": "route", "server": "ip-resolver" },
       {  "query_type": ["HTTPS", "SVCB"],  "rule_set": "geosite-cn",   "action": "route",   "server": "ali-doq"},
       {  "query_type": ["HTTPS", "SVCB"], "rule_set": "geosite-!cn",  "action": "route",   "server": "google-doh"  },
       { "domain_suffix": ["in-addr.arpa", "ip6.arpa","lan", "local"], "action": "route", "server": "dns-bootstrap"},
