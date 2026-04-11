@@ -8,7 +8,7 @@
 {"tag":"dns_dnspod","type":"https","server":"doh.pub","path":"/dns-query","domain_resolver":"hosts","detour":"🎯 全球直连"},
 {"tag":"dns_google","type":"https","server":"dns.google","path":"/dns-query","domain_resolver":"hosts","detour":"🍀 Google"},
 {"tag":"dns_cloudflare","type":"https","server":"cloudflare-dns.com","path":"/dns-query","domain_resolver":"hosts","detour":"🍀 Google"},
-{"tag":"dns_fakeip","type":"fakeip","inet4_range":"198.18.0.0/15","inet6_range":"fc00::/18"}
+{"tag":"dns_fakeip","type":"fakeip","inet4_range":"198.18.0.0/16","inet6_range":"fc00::/18"}
 ],
 "rules":[
 {"query_type":"PTR","action":"route","server":"dns-bootstrap"},
@@ -32,7 +32,7 @@
 {"tag":"socks-in","type":"socks","listen":"::","listen_port":1080},
 {"tag":"redirect-in","type":"redirect","listen":"::","listen_port":7890},
 {"tag":"tproxy-in","type":"tproxy","listen":"::","listen_port":7891},
-{"tag":"tun-in","type":"tun","interface_name":"momo","address":["172.31.0.1/30","fdfe:dcba:9876::1/126"],"auto_route":true,"auto_redirect": true,"strict_route":true,"sniff":true,"sniff_override_destination":true,"exclude_mptcp": true}
+{"tag":"tun-in","type":"tun","interface_name":"momo","address":["172.31.0.1/30","fdfe:dcba:9876::1/126"],"auto_route":true,"auto_redirect": true,"strict_route":true,"sniff":true,"sniff_override_destination":true}
 ],
 "outbounds":[
 {"tag":"🚀 默认代理","type":"selector","outbounds":["♻️ 自动选择","🇸🇬 狮城自动","🇯🇵 日本自动","🇺🇲 美国自动","🇭🇰 香港自动"]},
@@ -41,7 +41,7 @@
 {"tag":"🍀 Google","type":"selector","outbounds":["♻️ 自动选择","🇯🇵 日本自动","🇸🇬 狮城自动","🇺🇲 美国自动","🇭🇰 香港自动"]},
 {"tag":"📲 Telegram","type":"selector","outbounds":["♻️ 自动选择","🇸🇬 狮城自动","🇯🇵 日本自动","🇺🇲 美国自动","🇭🇰 香港自动"]},
 {"tag":"🎮 Steam","type":"selector","outbounds":["🎯 全球直连","♻️ 自动选择","🇸🇬 狮城自动","🇯🇵 日本自动","🇺🇲 美国自动","🇭🇰 香港自动"]},
-{"tag":"🐠 漏网之鱼","type":"selector","outbounds":["🚀 默认代理","🎯 全球直连"]},
+{"tag":"🐠 漏网之鱼","type":"selector","outbounds":["🎯 全球直连","🚀 默认代理"]},
 {"tag":"🛑 广告屏蔽","type":"block"},
 {"tag":"🇭🇰 香港自动","type":"urltest","outbounds":[]},
 {"tag":"🇯🇵 日本自动","type":"urltest","outbounds":[]},
@@ -70,7 +70,9 @@
 {"rule_set":["games"],"outbound":"🎮 Steam"},
 {"rule_set":["ai"],"outbound":"🧠 AI"},
 {"rule_set":["networktest"],"outbound":"🍀 Google"},
-{"rule_set":["proxy"],"outbound":"🚀 默认代理"}
+{"rule_set":["twitter","facebook","instagram","whatsapp",
+    "reddit","tiktok","openai","huggingface","github",
+    "cloudflare","akamai","fastly","discord","proxy"],"outbound":"🚀 默认代理"}
 ],
 "rule_set":[
 {"tag":"ads","type":"remote","format":"binary","url":"https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-ads-all.srs","download_detour":"🎯 全球直连"},
@@ -89,9 +91,23 @@
 {"tag":"telegramip","type":"remote","format":"binary","url":"https://v6.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/telegramip.srs","download_detour":"🎯 全球直连"},
 {"tag":"cnip","type":"remote","format":"binary","url":"https://v6.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/cnip.srs","download_detour":"🎯 全球直连"},
 {"tag":"ai","type":"remote","format":"binary","url":"https://v6.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/ai.srs","download_detour":"🎯 全球直连"},
-{"tag":"networktest","type":"remote","format":"binary","url":"https://v6.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/networktest.srs","download_detour":"🎯 全球直连"}
+{"tag":"networktest","type":"remote","format":"binary","url":"https://v6.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/networktest.srs","download_detour":"🎯 全球直连"},
+{ "tag": "google", "type": "remote", "format": "binary", "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/google.srs", "download_detour": "🎯 全球直连" },
+{ "tag": "twitter", "type": "remote", "format": "binary", "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/twitter.srs", "download_detour": "🎯 全球直连" },
+{ "tag": "facebook", "type": "remote", "format": "binary", "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/facebook.srs", "download_detour": "🎯 全球直连" },
+{ "tag": "instagram", "type": "remote", "format": "binary", "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/instagram.srs", "download_detour": "🎯 全球直连" },
+{ "tag": "whatsapp", "type": "remote", "format": "binary", "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/whatsapp.srs", "download_detour": "🎯 全球直连" },
+{ "tag": "reddit", "type": "remote", "format": "binary", "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/reddit.srs", "download_detour": "🎯 全球直连" },
+{ "tag": "tiktok", "type": "remote", "format": "binary", "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/tiktok.srs", "download_detour": "🎯 全球直连" },
+{ "tag": "openai", "type": "remote", "format": "binary", "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/openai.srs", "download_detour": "🎯 全球直连" },
+{ "tag": "huggingface", "type": "remote", "format": "binary", "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/huggingface.srs", "download_detour": "🎯 全球直连" },
+{ "tag": "github", "type": "remote", "format": "binary", "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/github.srs", "download_detour": "🎯 全球直连" },
+{ "tag": "cloudflare", "type": "remote", "format": "binary", "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/cloudflare.srs", "download_detour": "🎯 全球直连" },
+{ "tag": "akamai", "type": "remote", "format": "binary", "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/akamai.srs", "download_detour": "🎯 全球直连" },
+{ "tag": "fastly", "type": "remote", "format": "binary", "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/fastly.srs", "download_detour": "🎯 全球直连" },
+{ "tag": "discord", "type": "remote", "format": "binary", "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/discord.srs", "download_detour": "🎯 全球直连" }
 ],
-"final":"🐠 漏网之鱼",
+"final":"🎯 全球直连",
 "auto_detect_interface":true,
 "default_domain_resolver": "dns_alidns"
 },
