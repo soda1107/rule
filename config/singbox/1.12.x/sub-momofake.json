@@ -49,7 +49,7 @@
 {"tag":"🇺🇲 美国自动","type":"urltest","domain_resolver":"dns_alidns","outbounds":[]},
 {"tag":"♻️ 自动选择","type":"urltest","domain_resolver":"dns_alidns","outbounds":[]},
 {"tag":"GLOBAL","type":"selector","domain_resolver":"dns_google","outbounds":["🚀 默认代理","🧠 AI","📹 YouTube","🍀 Google","📲 Telegram","🎮 Steam","🐠 漏网之鱼","🛑 广告屏蔽","♻️ 自动选择"]},
-{"tag":"🎯 全球直连","type":"direct","domain_resolver":"dns_alidns","outbounds":"connect_timeout":"60s","tcp_fast_open":true}
+{"tag":"🎯 全球直连","type":"direct","domain_resolver":"dns_alidns","connect_timeout":"60s","tcp_fast_open":true}
 ],
 "route":{
 "rules":[
