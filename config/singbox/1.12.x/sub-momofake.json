@@ -94,7 +94,8 @@
 {"tag":"networktest","type":"remote","format":"binary","url":"https://v6.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/networktest.srs","download_detour":"🎯 全球直连"}
 ],
 "final":"🐠 漏网之鱼",
-"auto_detect_interface":true
+"auto_detect_interface":true,
+"default_domain_resolver": "dns_bootstrap"
 },
 "experimental":{
 "cache_file":{"enabled":true,"path":"/etc/momo/run/cache.db","store_fakeip":true,"store_rdrc":true},
