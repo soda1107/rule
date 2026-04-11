@@ -83,8 +83,6 @@
 {"tag":"games","type":"remote","format":"binary","url":"https://v6.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/games.srs","download_detour":"🎯 全球直连"},
 {"tag":"geosite-youtube","type":"remote","format":"binary","url":"https://v6.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/youtube.srs","download_detour":"🎯 全球直连"},
 {"tag":"geosite-telegram","type":"remote","format":"binary","url":"https://v6.gh-proxy.org/https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/Telegram/Telegram.srs","download_detour":"🎯 全球直连"},
-{"tag":"geoip-google","type":"remote","format":"binary","url":"https://v6.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat@sing/geo/geoip/google.srs","download_detour":"🎯 全球直连"},
-{"tag":"geoip-apple","type":"remote","format":"binary","url":"https://v6.gh-proxy.org/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat@sing/geo-lite/geoip/apple.srs","download_detour":"🎯 全球直连"},
 {"tag": "geosite-tencent", "type": "remote", "format": "binary", "url": "https://v6.gh-proxy.org/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/tencent.srs", "download_detour": "🎯 全球直连" },
 {"tag":"proxy","type":"remote","format":"binary","url":"https://v6.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/proxy.srs","download_detour":"🎯 全球直连"},
 {"tag":"cn","type":"remote","format":"binary","url":"https://v6.gh-proxy.org/https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/cn.srs","download_detour":"🎯 全球直连"},
