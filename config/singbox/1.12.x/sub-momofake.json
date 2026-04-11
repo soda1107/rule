@@ -4,13 +4,10 @@
 "servers":[
 {"tag":"hosts","type":"hosts","predefined":{"miwifi.com":["192.168.31.1","127.0.0.1"],"dns.alidns.com":["223.5.5.5","223.6.6.6","2400:3200::1","2400:3200:baba::1"],"doh.pub":["1.12.12.12","120.53.53.53","2402:4e00::"],"dns.google":["8.8.8.8","8.8.4.4","2001:4860:4860::8888","2001:4860:4860::8844"],"cloudflare-dns.com":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"]}},
 {"tag":"dns-bootstrap","type":"local"},
-
-{"tag":"dns_alidns","server":"quic://dns.alidns.com","domain_resolver":"hosts","detour":"🎯 全球直连"},
-{"tag":"dns_dnspod","server":"https://doh.pub/dns-query","domain_resolver":"hosts","detour":"🎯 全球直连"},
-
-{"tag":"dns_google","server":"https://dns.google/dns-query","domain_resolver":"hosts","detour":"🍀 Google"},
-{"tag":"dns_cloudflare","server":"https://cloudflare-dns.com/dns-query","domain_resolver":"hosts","detour":"🍀 Google"},
-
+{"tag":"dns_alidns","type":"quic","server":"dns.alidns.com","domain_resolver":"hosts","detour":"🎯 全球直连"},
+{"tag":"dns_dnspod","type":"https","server":"doh.pub","path":"/dns-query","domain_resolver":"hosts","detour":"🎯 全球直连"},
+{"tag":"dns_google","type":"https","server":"dns.google","path":"/dns-query","domain_resolver":"hosts","detour":"🍀 Google"},
+{"tag":"dns_cloudflare","type":"https","server":"cloudflare-dns.com","path":"/dns-query","domain_resolver":"hosts","detour":"🍀 Google"},
 {"tag":"dns_fakeip","type":"fakeip","inet4_range":"198.18.0.0/15","inet6_range":"fc00::/18"}
 ],
 "rules":[
