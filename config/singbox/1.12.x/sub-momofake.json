@@ -6,7 +6,7 @@
 {"tag":"dns-bootstrap","type":"local"},
 {"tag":"dns_alidns","type":"quic","server":"dns.alidns.com","domain_resolver":"hosts","detour":"🎯 全球直连"},
 {"tag":"dns_dnspod","type":"https","server":"doh.pub","path":"/dns-query","domain_resolver":"hosts","detour":"🎯 全球直连"},
-{"tag":"dns_google","type":"https","server":"dns.google","path":"/dns-query","domain_resolver":"hosts","detour":"🍀 Google"},
+{"tag":"dns_google","type":"https","server":"dns.google","path":"/dns-query","domain_resolver":"hosts","detour":"🍀 Google"}
 ],
 "rules":[
 {"query_type":"PTR","action":"route","server":"dns-bootstrap"},
