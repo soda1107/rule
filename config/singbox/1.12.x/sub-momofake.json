@@ -4,7 +4,7 @@
 "servers":[
 {"tag":"hosts","type":"hosts","predefined":{"miwifi.com":["192.168.31.1","127.0.0.1"],"dns.alidns.com":["223.5.5.5","223.6.6.6","2400:3200::1","2400:3200:baba::1"],"doh.pub":["1.12.12.12","120.53.53.53","2402:4e00::"],"dns.google":["8.8.8.8","8.8.4.4","2001:4860:4860::8888","2001:4860:4860::8844"]}},
 {"tag":"dns-bootstrap","type":"local"},
-{"tag":"dns_alidns","type":"quic","server":"dns.alidns.com","domain_resolver":"hosts","detour":"🎯 全球直连"},
+{"tag":"dns_alidns","type":"h3","server":"dns.alidns.com","domain_resolver":"hosts","detour":"🎯 全球直连"},
 {"tag":"dns_dnspod","type":"https","server":"doh.pub","path":"/dns-query","domain_resolver":"hosts","detour":"🎯 全球直连"},
 {"tag":"dns_google","type":"h3","server":"dns.google","path":"/dns-query","domain_resolver":"hosts","detour":"♻️ 自动选择"}
 ],
@@ -49,7 +49,7 @@
 ],
 "route":{
 "rules":[
-{"action":"sniff","sniffer":["http","tls","quic","dns"]},
+{"action":"sniff","sniffer":["http","tls","quic"]},
 {"rule_set":["private","cn","trackerslist","microsoft-cn","apple-cn","google-cn","geosite-tencent"],"action":"bypass"},
 {"ip_is_private":true,"action":"bypass"},
 {"rule_set":"geosite-youtube","outbound":"📹 YouTube"},
