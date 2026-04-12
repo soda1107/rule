@@ -51,12 +51,12 @@
 "rules":[
 {"action":"sniff","sniffer":["http","tls","quic"]},
 {"ip_is_private":true,"outbound":"🎯 全球直连"},
-{"rule_set":["private","cn","trackerslist","microsoft-cn","apple-cn","google-cn","geosite-tencent"],"outbound":"🎯 全球直连"},
 {"rule_set":"geosite-youtube","outbound":"📹 YouTube"},
 {"rule_set":["geosite-telegram","telegramip"], "outbound":"📲 Telegram"},
 {"rule_set":["games"],"outbound":"🎮 Steam"},
 {"rule_set":["ai"],"outbound":"🧠 AI"},
 {"rule_set": ["tld-proxy", "gfw"], "outbound": "🚀 默认代理"}
+{"rule_set":["private","cn","trackerslist","microsoft-cn","apple-cn","google-cn","geosite-tencent"],"outbound":"🎯 全球直连"}
 ],
 "rule_set":[
 {"tag":"ads","type":"local","format":"binary","path":"/etc/momo/ruleset/ads.srs"},
