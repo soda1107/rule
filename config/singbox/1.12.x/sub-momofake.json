@@ -4,9 +4,10 @@
 "servers":[
 {"tag":"hosts","type":"hosts","predefined":{"miwifi.com":["192.168.31.1","127.0.0.1"],"dns.alidns.com":["223.5.5.5","223.6.6.6","2400:3200::1","2400:3200:baba::1"],"doh.pub":["1.12.12.12","120.53.53.53","2402:4e00::"],"dns.google":["8.8.8.8","8.8.4.4","2001:4860:4860::8888","2001:4860:4860::8844"]}},
 {"tag":"dns-bootstrap","type":"local"},
-{"tag":"dns_alidns","type":"quic","server":"dns.alidns.com","domain_resolver":"hosts","detour":"🎯 全球直连"},
+{"tag":"dns_alidns","type":"h3","server":"dns.alidns.com","domain_resolver":"hosts","detour":"🎯 全球直连"},
 {"tag":"dns_dnspod","type":"https","server":"doh.pub","path":"/dns-query","domain_resolver":"hosts","detour":"🎯 全球直连"},
-{"tag":"dns_google","type":"https","server":"dns.google","path":"/dns-query","domain_resolver":"hosts","detour":"♻️ 自动选择"}
+{"tag":"dns_google","type":"h3","server":"dns.google","path":"/dns-query","domain_resolver":"hosts","detour":"♻️ 自动选择"},
+{"tag": "fakeip","type":"fakeip", "inet4_range": "198.18.0.0/16","inet6_range": "fc00::/18"}
 ],
 "rules":[
 {"query_type":"PTR","action":"route","server":"dns-bootstrap"},
@@ -16,8 +17,9 @@
 {"rule_set":["geosite-tencent"],"server":"dns_dnspod"},
 {"rule_set":["private"],"server":"dns-bootstrap"},
 {"rule_set":["microsoft-cn","apple-cn","google-cn","cn"],"server":"dns_alidns"},
+{"rule_set": "geosite-fakeipfilter", "server": "local"},
 {"rule_set":["geosite-telegram","geosite-youtube","ai","tld-proxy","gfw","games" ],"server":"dns_google"},
-{"query_type":["A","AAAA"],"server":"dns_alidns"}
+{"query_type":["A","AAAA"],"server": "fakeip", "rewrite_ttl": 1}
 ],
 "final":"dns_alidns",
 "strategy":"prefer_ipv4",
@@ -51,6 +53,8 @@
 "route":{
 "rules":[
 {"action":"sniff","sniffer":["http","tls","quic"]},
+{"inbound":"tun-in","ip_is_fake":true,"action":"route"},
+{"rule_set":"fakeipfilter","action":"bypass"},
 {"rule_set":"ads","outbound":"🛑 广告屏蔽"},
 {"ip_is_private":true,"action":"bypass"},
 {"rule_set":["private","cn","trackerslist","microsoft-cn","apple-cn","google-cn","geosite-tencent"],"action":"bypass"},
@@ -62,6 +66,7 @@
 ],
 "rule_set":[
 {"tag":"ads","type":"local","format":"binary","path":"/etc/momo/ruleset/ads.srs"},
+{"tag": "geosite-fakeipfilter", "type":"local","format":"binary","path":"/etc/momo/ruleset/geosite-fakeipfilter.srs"},
 {"tag":"trackerslist","type":"local","format":"binary","path":"/etc/momo/ruleset/trackerslist.srs"},
 {"tag":"private","type":"local","format":"binary","path":"/etc/momo/ruleset/private.srs"},
 {"tag":"microsoft-cn","type":"local","format":"binary","path":"/etc/momo/ruleset/microsoft-cn.srs"},
