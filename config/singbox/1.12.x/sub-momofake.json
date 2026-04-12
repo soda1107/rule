@@ -12,9 +12,9 @@
 {"query_type":"PTR","action":"route","server":"dns-bootstrap"},
 {"rule_set":"ads","action":"reject"},
 {"domain_suffix":["in-addr.arpa","ip6.arpa","lan","local"],"action":"route","server":"dns-bootstrap"},
-{"domain_suffix": ["gov.cn"], "server": "dns-bootstrap"},
+{"domain_suffix": ["gov.cn","private"], "server": "dns-bootstrap"},
 {"rule_set":["geosite-tencent"],"server":"dns_dnspod"},
-{"rule_set":["private","cn","microsoft-cn","apple-cn","google-cn"],"server":"dns_alidns"},
+{"rule_set":["microsoft-cn","apple-cn","google-cn","cn"],"server":"dns_alidns"},
 {"rule_set":["geosite-telegram","geosite-youtube","ai","tld-proxy","gfw","games" ],"server":"dns_google"},
 {"query_type":["A","AAAA"],"server":"dns_alidns"}
 ],
@@ -29,7 +29,7 @@
 {"tag":"socks-in","type":"socks","listen":"::","listen_port":1080},
 {"tag":"redirect-in","type":"redirect","listen":"::","listen_port":7890},
 {"tag":"tproxy-in","type":"tproxy","listen":"::","listen_port":7891},
-{"tag":"tun-in","type":"tun","interface_name":"momo","address":["172.31.0.1/30","fdfe:dcba:9876::1/126"],"auto_route":true,"auto_redirect": true,"strict_route":true,"sniff":true,"sniff_override_destination":true,"route_exclude_address_set": ["cn", "cnip"]}
+{"tag":"tun-in","type":"tun","interface_name":"momo","address":["172.31.0.1/30","fdfe:dcba:9876::1/126"],"auto_route":true,"auto_redirect": true,"route_exclude_address_set": ["cnip", "private"]}
 ],
 "outbounds":[
 {"tag":"🚀 默认代理","type":"selector","outbounds":["♻️ 自动选择","🇸🇬 狮城自动","🇯🇵 日本自动","🇺🇲 美国自动","🇭🇰 香港自动"]},
@@ -53,11 +53,10 @@
 {"action":"sniff","sniffer":["http","tls","quic"]},
 {"inbound":"dns-in","action":"hijack-dns"},
 {"rule_set":"ads","outbound":"🛑 广告屏蔽"},
-{"ip_cidr": ["10.0.0.0/8","172.16.0.0/12","192.168.0.0/16","169.254.0.0/16","172.31.0.0/30","fc00::/7","fe80::/10"],"action": "bypass"},
 {"ip_is_private":true,"action":"bypass"},
-{"rule_set":["private","cnip","cn","trackerslist","microsoft-cn","apple-cn","google-cn","geosite-tencent"],"action":"bypass"},
+{"rule_set":["cn","trackerslist","microsoft-cn","apple-cn","google-cn","geosite-tencent"],"action":"bypass"},
 {"rule_set":"geosite-youtube","outbound":"📹 YouTube"},
-{"rule_set":["geosite-telegram","telegramip"], "outbound":"📲 Telegram"},
+{"rule_set":["telegramip","geosite-telegram"], "outbound":"📲 Telegram"},
 {"rule_set":["games"],"outbound":"🎮 Steam"},
 {"rule_set":["ai"],"outbound":"🧠 AI"},
 {"rule_set": ["tld-proxy", "gfw"], "outbound": "🚀 默认代理"}
