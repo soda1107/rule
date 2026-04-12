@@ -43,9 +43,9 @@
 {"tag":"🛑 广告屏蔽","type":"block"},
 {"tag":"🇭🇰 香港自动","type":"urltest","outbounds":[]},
 {"tag":"🇯🇵 日本自动","type":"urltest","outbounds":[]},
-{"tag":"🇸🇬 狮城自动","type":"urltest","outbounds":[]},
+{"tag":"🇸🇬 狮城自动","type":"urltest","outbounds":[],"tolerance": 100},
 {"tag":"🇺🇲 美国自动","type":"urltest","outbounds":[]},
-{"tag":"♻️ 自动选择","type":"urltest","outbounds":[],"url":"https://www.gstatic.com/generate_204","interval":"2m","health_check":{"enable":true,"interval":"60s","url":["https://www.gstatic.com/generate_204","https://cp.cloudflare.com/generate_204","https://1.1.1.1/generate_204","https://8.8.8.8/generate_204"]}},
+{"tag":"♻️ 自动选择","type":"urltest","outbounds":[],"url":"https://www.gstatic.com/generate_204","interval":"2m","tolerance": 100,"idle_timeout": "5m"},
 {"tag":"GLOBAL","type":"selector","outbounds":["🚀 默认代理","🧠 AI","📹 YouTube","📲 Telegram","🎮 Steam","🐠 漏网之鱼","🛑 广告屏蔽","♻️ 自动选择"]},
 {"tag":"🎯 全球直连","type":"direct","connect_timeout":"60s","tcp_fast_open":true}
 ],
