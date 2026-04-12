@@ -30,7 +30,7 @@
 {"tag":"socks-in","type":"socks","listen":"::","listen_port":1080},
 {"tag":"redirect-in","type":"redirect","listen":"::","listen_port":7890},
 {"tag":"tproxy-in","type":"tproxy","listen":"::","listen_port":7891},
-{"tag":"tun-in","type":"tun","interface_name":"momo","address":["172.31.0.1/30","fdfe:dcba:9876::1/126"],"auto_route":true,"auto_redirect": true,"exclude_mptcp": true,"route_exclude_address_set":["cnip"]}
+{"tag":"tun-in","type":"tun","interface_name":"momo","address":["172.31.0.1/30","fdfe:dcba:9876::1/126"],"exclude_mptcp": true}
 ],
 "outbounds":[
 {"tag":"🚀 默认代理","type":"selector","outbounds":["♻️ 自动选择","🇸🇬 狮城自动","🇯🇵 日本自动","🇺🇲 美国自动","🇭🇰 香港自动"]},
@@ -50,7 +50,6 @@
 ],
 "route":{
 "rules":[
-{"inbound":"dns-in","action":"hijack-dns"},
 {"inbound":"tun-in","port":53,"ip_cidr":["172.31.0.2/32"],"action":"bypass"},
 {"action":"sniff","sniffer":["http","tls","quic"]},
 {"rule_set":"ads","outbound":"🛑 广告屏蔽"},
@@ -81,7 +80,6 @@
 {"tag":"gfw","type":"local","format":"binary","path":"/etc/momo/ruleset/gfw.srs"}
 ],
 "final":"🐠 漏网之鱼",
-"auto_detect_interface":true,
 "default_domain_resolver": "dns_alidns"
 },
 "experimental":{
