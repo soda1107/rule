@@ -53,7 +53,6 @@
 "route":{
 "rules":[
 {"action":"sniff","sniffer":["http","tls","quic"]},
-{"inbound":"tun-in","ip_is_fake":true,"action":"route"},
 {"rule_set":"fakeipfilter","action":"bypass"},
 {"rule_set":"ads","outbound":"🛑 广告屏蔽"},
 {"ip_is_private":true,"action":"bypass"},
