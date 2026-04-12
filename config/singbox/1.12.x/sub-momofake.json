@@ -53,6 +53,7 @@
 "route":{
 "rules":[
 {"action":"sniff","sniffer":["http","tls","quic"]},
+{"inbound":"tun-in","port":53,"ip_cidr":["172.31.0.2/32"],"action":"bypass"},
 {"rule_set":"geosite-fakeipfilter","action":"bypass"},
 {"rule_set":"ads","outbound":"🛑 广告屏蔽"},
 {"ip_is_private":true,"action":"bypass"},
