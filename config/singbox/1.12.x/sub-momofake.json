@@ -61,7 +61,7 @@
 {"ip_is_private":true,"action":"bypass"},
 {"rule_set":["private","trackerslist","microsoft-cn","apple-cn","google-cn","games-cn","geosite-tencent"],"action":"bypass"},
 {"rule_set":"geosite-youtube","outbound":"📹 YouTube"},
-{"rule_set":["geosite-telegram","telegramip"], "outbound":"📲 Telegram", "skip_resolve": true},
+{"rule_set":["geosite-telegram","telegramip"], "outbound":"📲 Telegram"},
 {"rule_set":["games"],"outbound":"🎮 Steam"},
 {"rule_set":["ai"],"outbound":"🧠 AI"},
 {"rule_set":["networktest"],"outbound":"🚀 默认代理"},
