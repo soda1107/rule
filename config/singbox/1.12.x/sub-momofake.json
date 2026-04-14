@@ -1,5 +1,4 @@
 {
-"certificate": {"store": "mozilla"},
 "log":{"level":"warn","timestamp":true},
 "dns":{
 "servers":[
@@ -24,11 +23,6 @@
 "strategy":"prefer_ipv4"
 },
 "inbounds":[
-{"tag":"dns-in","type":"direct","listen":"::","listen_port":1053},
-{"tag":"http-in","type":"http","listen":"::","listen_port":8080},
-{"tag":"socks-in","type":"socks","listen":"::","listen_port":1080},
-{"tag":"redirect-in","type":"redirect","listen":"::","listen_port":7890},
-{"tag":"tproxy-in","type":"tproxy","listen":"::","listen_port":7891},
 {"tag":"tun-in","type":"tun","interface_name":"momo","address":["198.18.0.1/30","fdfe:dcba:9876::1/126"],"auto_route":true,"auto_redirect":true,"exclude_mptcp": true,"route_exclude_address_set": ["cnip"] }
 ],
 "outbounds":[
@@ -50,7 +44,7 @@
 "route":{
 "rules":[
 {"action":"sniff","sniffer":["http","tls","quic","dns"]},
-{"inbound": "dns-in", "action": "hijack-dns"},
+{"protocol": "dns", "action": "hijack-dns"},
 {"ip_is_private":true,"action":"bypass"},
 {"rule_set":"geosite-youtube","outbound":"📹 YouTube"},
 {"rule_set":["geosite-telegram","telegramip"], "outbound":"📲 Telegram"},
