@@ -45,10 +45,11 @@
 "route":{
 "rules":[
 {"ip_is_private":true,"action":"bypass"},
+{"rule_set":["private","cn","trackerslist","microsoft-cn","apple-cn","google-cn","geosite-tencent"],"action":"bypass"},
 {"action":"sniff","sniffer":["http","tls","quic","dns"]},
 {"protocol": "dns", "action": "hijack-dns"},
 {"domain":["dns.google"], "outbound":"♻️ 自动选择"},
-{"rule_set":["private","cn","trackerslist","microsoft-cn","apple-cn","google-cn","geosite-tencent"],"action":"bypass"},
+{"rule_set":["private","cn","trackerslist","microsoft-cn","apple-cn","google-cn","geosite-tencent"],"action":"bypass","outbounds":"🎯 全球直连"},
 {"rule_set":"geosite-youtube","outbound":"📹 YouTube"},
 {"rule_set":["geosite-telegram","telegramip"], "outbound":"📲 Telegram"},
 {"rule_set":["games"],"outbound":"🎮 Steam"},
