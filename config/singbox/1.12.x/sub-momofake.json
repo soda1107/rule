@@ -44,7 +44,7 @@
 "route":{
 "rules":[
 {"ip_is_private":true,"action":"bypass"},
-{"domain":["dns.google", "outbound":"♻️ 自动选择"},
+{"domain":["dns.google"], "outbound":"♻️ 自动选择"},
 {"rule_set":["private","cn","trackerslist","microsoft-cn","apple-cn","google-cn","geosite-tencent"],"action":"bypass","outbound":"🎯 全球直连"},
 {"action":"sniff","sniffer":["http","tls","quic","dns"]},
 {"protocol": "dns", "action": "hijack-dns"},
