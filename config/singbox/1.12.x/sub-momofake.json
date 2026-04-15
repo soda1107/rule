@@ -1,5 +1,5 @@
 {
-"log":{"level":"warn","timestamp":true},
+"log":{"level":"info","timestamp":true},
 "dns":{
 "servers":[
 {"tag":"hosts","type":"hosts","predefined":{"miwifi.com":["192.168.31.1","127.0.0.1"],"dns.alidns.com":["223.5.5.5","223.6.6.6","2400:3200::1","2400:3200:baba::1"],"doh.pub":["1.12.12.12","120.53.53.53","2402:4e00::"],"dns.google":["8.8.8.8","8.8.4.4","2001:4860:4860::8888","2001:4860:4860::8844"]}},
@@ -23,7 +23,7 @@
 "strategy":"prefer_ipv4"
 },
 "inbounds":[
-{"tag":"tun-in","type":"tun","interface_name":"momo","address":["198.18.0.1/30","fdfe:dcba:9876::1/126"],"auto_route":true,"auto_redirect":true,"exclude_mptcp": true,"route_exclude_address_set": ["cnip"] }
+{"tag":"tun-in","type":"tun","interface_name":"momo","address":["198.18.0.1/30","fdfe:dcba:9876::1/126"],"auto_route":true,"auto_redirect":true,"exclude_mptcp": true,"route_exclude_address_set": ["cnip"],"exclude_uid": [453] }
 ],
 "outbounds":[
 {"tag":"🚀 默认代理","type":"selector","outbounds":["♻️ 自动选择","🇸🇬 狮城自动","🇯🇵 日本自动","🇺🇲 美国自动","🇭🇰 香港自动"]},
@@ -52,7 +52,7 @@
 {"domain_suffix": ["deepwiki.com"],"outbound":"🧠 AI"},
 {"rule_set":["ai"],"outbound":"🧠 AI"},
 {"rule_set": ["tld-proxy", "gfw"], "outbound": "🚀 默认代理"},
-{"rule_set":["private","cn","trackerslist","microsoft-cn","apple-cn","google-cn","geosite-tencent"],"action":"bypass"}
+{"rule_set":["private","cn","trackerslist","microsoft-cn","apple-cn","google-cn","geosite-tencent"],"action":"bypass","outbound":"🎯 全球直连"}
 ],
 "rule_set":[
 {"tag":"ads","type":"local","format":"binary","path":"/etc/momo/ruleset/ads.srs"},
