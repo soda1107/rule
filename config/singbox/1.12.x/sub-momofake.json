@@ -2,13 +2,11 @@
 "log":{"level":"info","timestamp":true},
 "dns":{
 "servers":[
-{"tag":"dns-bootstrap","type":"udp", "server": "211.137.96.205","detour": "🎯 全球直连" },
 {"tag": "smartdns_cn","type": "udp","server": "127.0.0.1","server_port": 53, "detour":"🎯 全球直连"},
 { "tag": "smartdns_proxy", "type": "udp","server": "127.0.0.1","server_port": 6553,"detour":"🎯 全球直连"}
 ],
 "rules":[
 {"rule_set":"ads","action":"reject"},
-{"domain_suffix": ["gov.cn"], "action": "route", "server": "dns-bootstrap"},
 {"rule_set":["microsoft-cn","apple-cn","geosite-tencent","cn"],"action": "route", "server":"smartdns_cn"},
 {"rule_set":["geosite-telegram"],"action": "route", "server":"smartdns_proxy","strategy": "prefer_ipv6"},
 {"rule_set":["geosite-youtube","ai","tld-proxy","gfw","games" ],"action": "route", "server":"smartdns_proxy"}
