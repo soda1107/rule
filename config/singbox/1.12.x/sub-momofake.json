@@ -8,13 +8,12 @@
 ],
 "rules":[
 {"rule_set":"ads","action":"reject"},
-{"domain_suffix": ["gov.cn"], "server": "dns-bootstrap"},
-{"rule_set":["microsoft-cn","apple-cn","geosite-tencent","cn"],"server":"smartdns_cn"},
-{"rule_set":["geosite-telegram"],"server":"smartdns_proxy","strategy": "prefer_ipv6"},
-{"rule_set":["geosite-youtube","ai","tld-proxy","gfw","games" ],"server":"smartdns_proxy"}
+{"domain_suffix": ["gov.cn"], "action": "route", "server": "dns-bootstrap"},
+{"rule_set":["microsoft-cn","apple-cn","geosite-tencent","cn"],"action": "route", "server":"smartdns_cn"},
+{"rule_set":["geosite-telegram"],"action": "route", "server":"smartdns_proxy","strategy": "prefer_ipv6"},
+{"rule_set":["geosite-youtube","ai","tld-proxy","gfw","games" ],"action": "route", "server":"smartdns_proxy"}
 ],
-"final":"smartdns_cn",
-"strategy":"prefer_ipv4"
+"final":"smartdns_cn"
 },
 "inbounds":[
 {"tag":"dns-in","type":"direct","listen":"::","listen_port":1053},
@@ -31,30 +30,30 @@
 {"tag":"📲 Telegram","type":"selector","outbounds":["♻️ 自动选择","🇸🇬 狮城自动","🇯🇵 日本自动","🇺🇲 美国自动","🇭🇰 香港自动"]},
 {"tag":"🎮 Steam","type":"selector","outbounds":["🎯 全球直连","♻️ 自动选择","🇸🇬 狮城自动","🇯🇵 日本自动","🇺🇲 美国自动","🇭🇰 香港自动"]},
 {"tag":"🐠 漏网之鱼","type":"selector","outbounds":["🎯 全球直连","🚀 默认代理"]},
-{"tag":"🛑 广告屏蔽","type":"block"},
 {"tag":"🇭🇰 香港自动","type":"urltest","outbounds":[]},
 {"tag":"🇯🇵 日本自动","type":"urltest","outbounds":[]},
 {"tag":"🇸🇬 狮城自动","type":"urltest","tolerance": 100,"outbounds":[]},
 {"tag":"🇺🇲 美国自动","type":"urltest","outbounds":[]},
 {"tag":"♻️ 自动选择","type":"urltest","interval":"2m","tolerance": 100,"idle_timeout": "5m","outbounds":[]},
-{"tag":"GLOBAL","type":"selector","outbounds":["🚀 默认代理","🧠 AI","📹 YouTube","📲 Telegram","🎮 Steam","🐠 漏网之鱼","🛑 广告屏蔽","♻️ 自动选择"]},
+{"tag":"GLOBAL","type":"selector","outbounds":["🚀 默认代理","🧠 AI","📹 YouTube","📲 Telegram","🎮 Steam","🐠 漏网之鱼","♻️ 自动选择"]},
 {"tag":"🎯 全球直连","type":"direct","tcp_fast_open":true}
 ],
 "route":{
 "rules":[
 {"action":"sniff","sniffer":["http","tls","quic","dns"]},
+{"rule_set": "ads", "action": "reject"},
 {"inbound": "dns-in", "action": "hijack-dns"},
 { "type": "logical",  "mode": "or",  "rules": [{"protocol": "dns"}, {"port": 53}],  "action": "hijack-dns"  }, 
-{"domain":["dns.google"], "outbound":"♻️ 自动选择"},
-{"rule_set":["github"], "outbound":"♻️ 自动选择"},
-{"ip_is_private":true,"outbound":"🎯 全球直连"},
-{"rule_set":["private","cn","trackerslist","microsoft-cn","apple-cn","geosite-tencent"],"outbound":"🎯 全球直连"},
-{"rule_set":"geosite-youtube","outbound":"📹 YouTube"},
-{"rule_set":["geosite-telegram","telegramip"], "outbound":"📲 Telegram"},
-{"rule_set":["games"],"outbound":"🎮 Steam"},
-{"domain_suffix": ["deepwiki.com"],"outbound":"🧠 AI"},
-{"rule_set":["ai"],"outbound":"🧠 AI"},
-{"rule_set": ["tld-proxy", "gfw"], "outbound": "🚀 默认代理"}
+{"domain":["dns.google"], "action": "route","outbound":"♻️ 自动选择"},
+{"rule_set":["github"],"action": "route", "outbound":"♻️ 自动选择"},
+{"ip_is_private":true,"action": "route","outbound":"🎯 全球直连"},
+{"rule_set":["private","cn","trackerslist","microsoft-cn","apple-cn","geosite-tencent"],"action": "route","outbound":"🎯 全球直连"},
+{"rule_set":"geosite-youtube","action": "route","outbound":"📹 YouTube"},
+{"rule_set":["geosite-telegram","telegramip"],"action": "route", "outbound":"📲 Telegram"},
+{"rule_set":["games"],"action": "route","outbound":"🎮 Steam"},
+{"domain_suffix": ["deepwiki.com"],"action": "route","outbound":"🧠 AI"},
+{"rule_set":["ai"],"action": "route","outbound":"🧠 AI"},
+{"rule_set": ["tld-proxy", "gfw"], "action": "route","outbound": "🚀 默认代理"}
 ],
 "rule_set":[
 {"tag":"ads","type":"local","format":"binary","path":"/etc/momo/ruleset/ads.srs"},
