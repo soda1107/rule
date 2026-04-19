@@ -2,23 +2,18 @@
 "log":{"level":"info","timestamp":true},
 "dns":{
 "servers":[
-{"tag":"hosts","type":"hosts","predefined":{"miwifi.com":["192.168.31.1","127.0.0.1"],"dns.alidns.com":["223.5.5.5","223.6.6.6","2400:3200::1","2400:3200:baba::1"],"doh.pub":["1.12.12.12","120.53.53.53","2402:4e00::"],"dns.google":["8.8.8.8","8.8.4.4","2001:4860:4860::8888","2001:4860:4860::8844"]}},
-{"tag":"dns-bootstrap","type":"local"},
-{"tag":"dns_alidns","type":"h3","server":"dns.alidns.com","domain_resolver":"hosts","detour":"🎯 全球直连"},
-{"tag":"dns_dnspod","type":"https","server":"doh.pub","path":"/dns-query","domain_resolver":"hosts","detour":"🎯 全球直连"},
-{"tag":"dns_google","type":"https","server":"dns.google","path":"/dns-query","domain_resolver":"hosts","detour":"♻️ 自动选择"}
+{"tag":"dns-bootstrap","type":"udp", "server": "211.137.96.205","detour": "🎯 全球直连" },
+{"tag": "smartdns_cn","server": "127.0.0.1","server_port": 53, "detour":"🎯 全球直连"},
+{ "tag": "smartdns_proxy", "server": "127.0.0.1","server_port": 6553,"detour":"🎯 全球直连"}
 ],
 "rules":[
-{"query_type":"PTR","action":"route","server":"dns-bootstrap"},
 {"rule_set":"ads","action":"reject"},
-{"domain_suffix":["in-addr.arpa","ip6.arpa","lan","local"],"action":"route","server":"dns-bootstrap"},
 {"domain_suffix": ["gov.cn"], "server": "dns-bootstrap"},
-{"rule_set":["geosite-tencent"],"server":"dns_dnspod"},
-{"rule_set":["microsoft-cn","apple-cn","cn"],"server":"dns-bootstrap"},
-{"rule_set":["geosite-telegram"],"server":"dns_google","strategy": "prefer_ipv6"},
-{"rule_set":["geosite-youtube","ai","tld-proxy","gfw","games" ],"server":"dns_google"}
+{"rule_set":["microsoft-cn","apple-cn","geosite-tencent","cn"],"server":"smartdns_cn"},
+{"rule_set":["geosite-telegram"],"server":"smartdns_proxy","strategy": "prefer_ipv6"},
+{"rule_set":["geosite-youtube","ai","tld-proxy","gfw","games" ],"server":"smartdns_proxy"}
 ],
-"final":"dns_alidns",
+"final":"smartdns_cn",
 "strategy":"prefer_ipv4"
 },
 "inbounds":[
@@ -43,13 +38,14 @@
 {"tag":"🇺🇲 美国自动","type":"urltest","outbounds":[]},
 {"tag":"♻️ 自动选择","type":"urltest","interval":"2m","tolerance": 100,"idle_timeout": "5m","outbounds":[]},
 {"tag":"GLOBAL","type":"selector","outbounds":["🚀 默认代理","🧠 AI","📹 YouTube","📲 Telegram","🎮 Steam","🐠 漏网之鱼","🛑 广告屏蔽","♻️ 自动选择"]},
-{"tag":"🎯 全球直连","type":"direct","connect_timeout":"60s","tcp_fast_open":true}
+{"tag":"🎯 全球直连","type":"direct","tcp_fast_open":true}
 ],
 "route":{
 "rules":[
 {"action":"sniff","sniffer":["http","tls","quic","dns"]},
 {"inbound": "dns-in", "action": "hijack-dns"},
 {"domain":["dns.google"], "outbound":"♻️ 自动选择"},
+{"rule_set":["github"], "outbound":"♻️ 自动选择"},
 {"ip_is_private":true,"outbound":"🎯 全球直连"},
 {"rule_set":["private","cn","trackerslist","microsoft-cn","apple-cn","geosite-tencent"],"outbound":"🎯 全球直连"},
 {"rule_set":"geosite-youtube","outbound":"📹 YouTube"},
@@ -74,13 +70,14 @@
 {"tag":"cnip","type":"local","format":"binary","path":"/etc/momo/ruleset/cnip.srs"},
 {"tag":"ai","type":"local","format":"binary","path":"/etc/momo/ruleset/ai.srs"},
 {"tag":"tld-proxy","type":"local","format":"binary","path":"/etc/momo/ruleset/tld-proxy.srs"},
-{"tag":"gfw","type":"local","format":"binary","path":"/etc/momo/ruleset/gfw.srs"}
+{"tag":"gfw","type":"local","format":"binary","path":"/etc/momo/ruleset/gfw.srs"},
+{"tag":"github","type":"local","format":"binary","path":"/etc/momo/ruleset/github.srs"}
 ],
 "final":"🐠 漏网之鱼",
-"default_domain_resolver": "dns_alidns"
+"default_domain_resolver": "smartdns_cn"
 },
 "experimental":{
-"cache_file":{"enabled":true,"path":"/etc/momo/run/cache.db","store_rdrc":true},
+"cache_file":{"enabled":true,"path":"/etc/momo/run/cache.db"},
 "clash_api":{"external_controller":"0.0.0.0:9095","external_ui":"/etc/momo/run/ui","external_ui_download_url":"https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip","external_ui_download_detour":"🎯 全球直连","secret":"","default_mode":"rule"}
 }
 }
