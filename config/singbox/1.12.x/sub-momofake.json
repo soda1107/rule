@@ -3,8 +3,8 @@
 "dns":{
 "servers":[
 {"tag":"dns-bootstrap","type":"udp", "server": "211.137.96.205","detour": "🎯 全球直连" },
-{"tag": "smartdns_cn","server": "127.0.0.1","server_port": 53, "detour":"🎯 全球直连"},
-{ "tag": "smartdns_proxy", "server": "127.0.0.1","server_port": 6553,"detour":"🎯 全球直连"}
+{"tag": "smartdns_cn","type": "udp","server": "127.0.0.1","server_port": 53, "detour":"🎯 全球直连"},
+{ "tag": "smartdns_proxy", "type": "udp","server": "127.0.0.1","server_port": 6553,"detour":"🎯 全球直连"}
 ],
 "rules":[
 {"rule_set":"ads","action":"reject"},
@@ -44,6 +44,7 @@
 "rules":[
 {"action":"sniff","sniffer":["http","tls","quic","dns"]},
 {"inbound": "dns-in", "action": "hijack-dns"},
+{ "type": "logical",  "mode": "or",  "rules": [{"protocol": "dns"}, {"port": 53}],  "action": "hijack-dns"  }, 
 {"domain":["dns.google"], "outbound":"♻️ 自动选择"},
 {"rule_set":["github"], "outbound":"♻️ 自动选择"},
 {"ip_is_private":true,"outbound":"🎯 全球直连"},
