@@ -41,7 +41,6 @@
 "route":{
 "rules":[
 {"action":"sniff","sniffer":["http","tls","quic","dns"]},
-{"rule_set": "ads", "action": "reject"},
 {"inbound": "dns-in", "action": "hijack-dns"},
 { "type": "logical",  "mode": "or",  "rules": [{"protocol": "dns"}, {"port": 53}],  "action": "hijack-dns"  }, 
 {"domain":["dns.google"], "action": "route","outbound":"♻️ 自动选择"},
