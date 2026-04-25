@@ -6,7 +6,6 @@
 { "tag": "smartdns_proxy", "type": "udp","server": "127.0.0.1","server_port": 6553,"detour":"🎯 全球直连"}
 ],
 "rules":[
-{"rule_set":"ads","action":"reject"},
 {"rule_set":["microsoft-cn","apple-cn","geosite-tencent","cn"],"action": "route", "server":"smartdns_cn"},
 {"rule_set":["geosite-telegram"],"action": "route", "server":"smartdns_proxy","strategy": "prefer_ipv6"},
 {"rule_set":["geosite-youtube","ai","tld-proxy","gfw","games" ],"action": "route", "server":"smartdns_proxy"}
@@ -53,7 +52,6 @@
 {"rule_set": ["tld-proxy", "gfw"], "action": "route","outbound": "🚀 默认代理"}
 ],
 "rule_set":[
-{"tag":"ads","type":"local","format":"binary","path":"/etc/momo/ruleset/ads.srs"},
 {"tag":"trackerslist","type":"local","format":"binary","path":"/etc/momo/ruleset/trackerslist.srs"},
 {"tag":"private","type":"local","format":"binary","path":"/etc/momo/ruleset/private.srs"},
 {"tag":"microsoft-cn","type":"local","format":"binary","path":"/etc/momo/ruleset/microsoft-cn.srs"},
