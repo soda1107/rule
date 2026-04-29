@@ -2,15 +2,24 @@
 "log":{"level":"info","timestamp":true},
 "dns":{
 "servers":[
-{"tag": "smartdns_cn","type": "udp","server": "127.0.0.1","server_port": 53, "detour":"🎯 全球直连"},
-{ "tag": "smartdns_proxy", "type": "udp","server": "127.0.0.1","server_port": 6553,"detour":"🎯 全球直连"}
+{"tag":"hosts","type":"hosts","predefined":{"miwifi.com":["192.168.31.1","127.0.0.1"],"dns.alidns.com":["223.5.5.5","223.6.6.6","2400:3200::1","2400:3200:baba::1"],"doh.pub":["1.12.12.12","120.53.53.53","2402:4e00::"],"dns.google":["8.8.8.8","8.8.4.4","2001:4860:4860::8888","2001:4860:4860::8844"]}},
+{"tag":"dns-bootstrap","type":"local"},
+{"tag":"dns_alidns","type":"h3","server":"dns.alidns.com","domain_resolver":"hosts","detour":"🎯 全球直连"},
+{"tag":"dns_dnspod","type":"https","server":"doh.pub","path":"/dns-query","domain_resolver":"hosts","detour":"🎯 全球直连"},
+{"tag":"dns_google","type":"https","server":"dns.google","path":"/dns-query","domain_resolver":"hosts","detour":"♻️ 自动选择"}
 ],
 "rules":[
-{"rule_set":["microsoft-cn","apple-cn","geosite-tencent","cn"],"action": "route", "server":"smartdns_cn"},
-{"rule_set":["geosite-telegram"],"action": "route", "server":"smartdns_proxy","strategy": "prefer_ipv6"},
-{"rule_set":["geosite-youtube","ai","tld-proxy","gfw","games" ],"action": "route", "server":"smartdns_proxy"}
+{"query_type":"PTR","action":"route","server":"dns-bootstrap"},
+{"rule_set":"ads","action":"reject"},
+{"domain_suffix":["in-addr.arpa","ip6.arpa","lan","local"],"action":"route","server":"dns-bootstrap"},
+{"domain_suffix": ["gov.cn"], "action":"route","server": "dns-bootstrap"},
+{"rule_set":["geosite-tencent"],"server":"dns_dnspod"},
+{"rule_set":["microsoft-cn","apple-cn","cn"],"server":"dns_alidns"},
+{"rule_set":["geosite-telegram"],"server":"dns_google","strategy": "prefer_ipv6"},
+{"rule_set":["geosite-youtube","ai","tld-proxy","gfw","games" ],"server":"dns_google"}
 ],
-"final":"smartdns_cn"
+"final":"dns_alidns",
+"strategy":"prefer_ipv4"
 },
 "inbounds":[
 {"tag":"dns-in","type":"direct","listen":"::","listen_port":1053},
@@ -43,7 +52,7 @@
 {"domain":["dns.google"], "action": "route","outbound":"♻️ 自动选择"},
 {"rule_set":["github"],"action": "route", "outbound":"♻️ 自动选择"},
 {"ip_is_private":true,"action": "route","outbound":"🎯 全球直连"},
-{"rule_set":["cnip","private","cn","trackerslist","microsoft-cn","apple-cn","geosite-tencent"],"action": "route","outbound":"🎯 全球直连"},
+{"rule_set":["cnip","private","cn","microsoft-cn","apple-cn","geosite-tencent"],"action": "route","outbound":"🎯 全球直连"},
 {"rule_set":"geosite-youtube","action": "route","outbound":"📹 YouTube"},
 {"rule_set":["geosite-telegram","telegramip"],"action": "route", "outbound":"📲 Telegram"},
 {"rule_set":["games"],"action": "route","outbound":"🎮 Steam"},
@@ -52,24 +61,25 @@
 {"rule_set": ["tld-proxy", "gfw"], "action": "route","outbound": "🚀 默认代理"}
 ],
 "rule_set":[
-{"tag":"trackerslist","type":"local","format":"binary","path":"/etc/momo/ruleset/trackerslist.srs"},
-{"tag":"private","type":"local","format":"binary","path":"/etc/momo/ruleset/private.srs"},
-{"tag":"microsoft-cn","type":"local","format":"binary","path":"/etc/momo/ruleset/microsoft-cn.srs"},
-{"tag":"apple-cn","type":"local","format":"binary","path":"/etc/momo/ruleset/apple-cn.srs"},
-{"tag":"games","type":"local","format":"binary","path":"/etc/momo/ruleset/games.srs"},
-{"tag":"geosite-youtube","type":"local","format":"binary","path":"/etc/momo/ruleset/youtube.srs"},
-{"tag":"geosite-telegram","type":"local","format":"binary","path":"/etc/momo/ruleset/telegram.srs"},
-{"tag":"geosite-tencent","type":"local","format":"binary","path":"/etc/momo/ruleset/tencent.srs"},
-{"tag":"cn","type":"local","format":"binary","path":"/etc/momo/ruleset/cn.srs"},
-{"tag":"telegramip","type":"local","format":"binary","path":"/etc/momo/ruleset/telegramip.srs"},
-{"tag":"cnip","type":"local","format":"binary","path":"/etc/momo/ruleset/cnip.srs"},
-{"tag":"ai","type":"local","format":"binary","path":"/etc/momo/ruleset/ai.srs"},
-{"tag":"tld-proxy","type":"local","format":"binary","path":"/etc/momo/ruleset/tld-proxy.srs"},
-{"tag":"gfw","type":"local","format":"binary","path":"/etc/momo/ruleset/gfw.srs"},
-{"tag":"github","type":"local","format":"binary","path":"/etc/momo/ruleset/github.srs"}
+{"tag":"private","type":"remote","format":"binary","url":"https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/private.srs"},
+{"tag":"microsoft-cn","type":"remote","format":"binary","url":"https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/microsoft.srs"},
+{"tag":"apple-cn","type":"remote","format":"binary","url":"https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/apple.srs"},
+{"tag":"games","type":"remote","format":"binary","url":"https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/steam.srs"},
+{"tag":"geosite-youtube","type":"remote","format":"binary","url":"https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/youtube.srs"},
+{"tag":"geosite-telegram","type":"remote","format":"binary","url":"https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/telegram.srs"},
+{"tag":"geosite-tencent","type":"remote","format":"binary","url":"https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/tencent.srs"},
+{"tag":"cn","type":"remote","format":"binary","url":"https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/cn.srs"},
+{"tag":"telegramip","type":"remote","format":"binary","url":"https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/telegram.srs"},
+{"tag":"cnip","type":"remote","format":"binary","url":"https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/cn.srs"},
+{"tag":"ai","type":"remote","format":"binary","url":"https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-ai-!cn.srs"},
+{"tag":"tld-proxy","type":"remote","format":"binary","url":"https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/tld-!cn.srs"},
+{"tag":"gfw","type":"remote","format":"binary","url":"https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/gfw.srs"},
+{"tag":"github","type":"remote","format":"binary","url":"https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/github.srs"},
+{"tag":"ads","type":"remote","format":"binary","url":"https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-ads-all.srs"},
+{"tag":"google-cn","type":"remote","format":"binary","url":"https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/google.srs"}
 ],
 "final":"🐠 漏网之鱼",
-"default_domain_resolver": "smartdns_cn"
+"default_domain_resolver": "dns_alidns"
 },
 "experimental":{
 "cache_file":{"enabled":true,"path":"/etc/momo/run/cache.db"},
