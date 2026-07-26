@@ -2,7 +2,7 @@
 "log":{"level":"info","timestamp":true},
 "dns":{
 "servers":[
-{"tag":"hosts","type":"hosts","predefined":{"miwifi.com":["192.168.31.1","127.0.0.1"],"dns.alidns.com":["223.5.5.5","223.6.6.6","2400:3200::1","2400:3200:baba::1"],"doh.pub":["1.12.12.12","120.53.53.53","2402:4e00::"],"dns.google":["8.8.8.8","8.8.4.4","2001:4860:4860::8888","2001:4860:4860::8844"]}},
+{"tag":"hosts","type":"hosts","predefined":{"dns.alidns.com":["223.5.5.5","223.6.6.6","2400:3200::1","2400:3200:baba::1"],"doh.pub":["1.12.12.12","120.53.53.53","2402:4e00::"],"dns.google":["8.8.8.8","8.8.4.4","2001:4860:4860::8888","2001:4860:4860::8844"]}},
 {"tag":"dns-bootstrap","type":"local"},
 {"tag":"dns_alidns","type":"h3","server":"dns.alidns.com","domain_resolver":"hosts","detour":"🎯 全球直连"},
 {"tag":"dns_dnspod","type":"https","server":"doh.pub","path":"/dns-query","domain_resolver":"hosts","detour":"🎯 全球直连"},
@@ -14,7 +14,7 @@
 {"domain_suffix":["in-addr.arpa","ip6.arpa","lan","local"],"action":"route","server":"dns-bootstrap"},
 {"domain_suffix": ["gov.cn"], "action":"route","server": "dns-bootstrap"},
 {"rule_set":["geosite-tencent"],"server":"dns_dnspod"},
-{"rule_set":["microsoft-cn","apple-cn","cn"],"server":"dns_alidns"},
+{"rule_set":["microsoft-cn","apple-cn","cn"],"server":"dns-bootstrap"},
 {"rule_set":["geosite-telegram"],"server":"dns_google","strategy": "prefer_ipv6"},
 {"rule_set":["geosite-youtube","ai","tld-proxy","gfw","games" ],"server":"dns_google"}
 ],
